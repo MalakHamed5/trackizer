@@ -27,5 +27,5 @@ class AppColors {
   static const primaryText = Colors.white;
   static const secondaryText = gray60;
 
-  static const backgroundDark = Color(0xff0E0E12);
+  static const backgroundDark = Color.fromARGB(255, 21, 21, 26);
 }

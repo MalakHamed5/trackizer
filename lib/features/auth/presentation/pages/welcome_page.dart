@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:trackizer/core/utils/device_utils.dart';
+import 'package:trackizer/features/auth/presentation/widgets/secondary_button.dart';
 
-import '../../../../core/const/app_routers.dart';
+import '../../../../core/cofig/routes/routers_name.dart';
 import '../../../../core/const/assets.dart';
+import '../widgets/auth_header.dart';
 import '../widgets/primary_button.dart';
 
 class WelcomePage extends StatefulWidget {
@@ -38,10 +40,7 @@ class _WelcomePageState extends State<WelcomePage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Image.asset(
-                    Assets.assetsImgAppLogo,
-                    width: DeviceUtils.getScreenWidth(context) * 0.5,
-                  ),
+                  AuthHeader(),
                   Spacer(),
                   Text(
                     "Welcome! This app is here to inspire, guide, and\n support you every step of the way. Let’s begin the journey together",
@@ -50,35 +49,18 @@ class _WelcomePageState extends State<WelcomePage> {
                   ),
                   SizedBox(height: 20),
                   PrimaryButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      context.push(RoutersName.signup);
+                    },
+
                     txt: 'Get Started',
-                    sizeText: 16,
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          color: Theme.of(
-                            context,
-                            // ignore: deprecated_member_use
-                          ).colorScheme.secondary.withOpacity(0.5),
-                          blurRadius: 15,
-                          offset: Offset(0, 7),
-                        ),
-                      ],
-                      color: Theme.of(context).colorScheme.secondary,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
                   ),
                   SizedBox(height: 20),
-                  PrimaryButton(
+                  SecondaryButton(
                     onPressed: () {
-                      context.push(AppRouter.signup);
+                      context.push(RoutersName.signin);
                     },
                     txt: 'I have an account',
-                    sizeText: 14,
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.surface,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
                   ),
                 ],
               ),

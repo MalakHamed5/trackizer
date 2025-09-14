@@ -8,13 +8,21 @@ ThemeData getDarkTheme() {
     brightness: Brightness.dark,
     scaffoldBackgroundColor: AppColors.backgroundDark,
     colorScheme: ColorScheme.dark(
+      //---- Main
       primary: AppColors.primary,
       secondary: AppColors.secondary,
 
-      surface: AppColors.gray50,
+      //---- Surface
+      surface: AppColors.gray40,
       onSurface: AppColors.primaryText,
+
+      //---- Text
       onPrimary: AppColors.primaryText,
-      onSecondary: AppColors.primaryText,
+      onSecondary: AppColors.gray50,
+      onTertiary: AppColors.gray30,
+
+      //---- container
+      primaryContainer: AppColors.gray60,
     ),
 
     fontFamily: "Inter",

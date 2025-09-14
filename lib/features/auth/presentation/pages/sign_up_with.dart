@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:trackizer/features/auth/presentation/widgets/primary_button.dart';
+import 'package:go_router/go_router.dart';
+import 'package:trackizer/core/cofig/routes/routers_name.dart';
+import 'package:trackizer/features/auth/presentation/widgets/auth_header.dart';
 
 import '../../../../core/const/assets.dart';
 import '../../../../core/utils/device_utils.dart';
+import '../widgets/secondary_button.dart';
+import '../widgets/social_buttons.dart';
 
 class SignUpWith extends StatelessWidget {
   const SignUpWith({super.key});
@@ -17,72 +21,57 @@ class SignUpWith extends StatelessWidget {
           child: Column(
             children: [
               //---- Logo
-              Image.asset(
-                Assets.assetsImgAppLogo,
-                width: DeviceUtils.getScreenWidth(context) * 0.5,
-              ),
-              SizedBox(height: DeviceUtils.getScreenHeight(context) * 0.25),
+              AuthHeader(),
+              SizedBox(height: DeviceUtils.getScreenHeight(context) * 0.40),
               //---- Sign with apple
-              PrimaryButton(
-                img: Assets.assetsImgAppIcon,
+              SocialButtons(
+                img: Assets.assetsImgApple,
                 onPressed: () {},
                 txt: "Sign up with Apple",
-                sizeText: 16,
-                decoration: BoxDecoration(
-                  color: Colors.black,
-                  borderRadius: BorderRadius.circular(20),
-                ),
+                color: Colors.black,
+                textColor: Colors.white,
               ),
               SizedBox(height: 10),
               //----- Sign with Google
-              PrimaryButton(
+              SocialButtons(
                 img: Assets.assetsImgGoogle,
                 onPressed: () {},
                 txt: "Sign up with Google",
-                sizeText: 16,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(20),
-                ),
+                color: Colors.white,
+                textColor: Colors.black,
               ),
               SizedBox(height: 10),
               //------ Sign with Facebook
-              PrimaryButton(
+              SocialButtons(
                 img: Assets.assetsImgFb,
                 onPressed: () {},
                 txt: "Sign up with Facebook",
-                sizeText: 16,
-                decoration: BoxDecoration(
-                  color: Colors.blue,
-                  borderRadius: BorderRadius.circular(20),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.blue,
-                      blurRadius: 7,
-                      offset: Offset(0, 3),
-                    ),
-                  ],
-                ),
+                color: Colors.blue,
+                textColor: Theme.of(context).colorScheme.onPrimary,
               ),
-              SizedBox(height: 10),
+              //---- Or text
+              SizedBox(height: 30),
               Text("or", textAlign: TextAlign.center),
-
+              Spacer(),
               //----Sign with Email
               Padding(
-                padding: EdgeInsetsGeometry.only(bottom: 30),
-                child: PrimaryButton(
-                  onPressed: () {},
+                padding: EdgeInsetsGeometry.only(bottom: 10),
+                child: SecondaryButton(
+                  onPressed: () {
+                    context.push(RoutersName.singupWithEmil);
+                  },
                   txt: "Sing up with E-mail",
-                  sizeText: 14,
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.surface,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
                 ),
               ),
               SizedBox(height: 3),
-              Text(
-                'By registering, you agree to out Terms of Use. Learn how we collect, use and share your data.',
+              Padding(
+                padding: const EdgeInsets.only(bottom: 20),
+                child: Text(
+                  'By registering, you agree to out Terms of Use. Learn how we collect, use and share your data.',
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onSecondary,
+                  ),
+                ),
               ),
             ],
           ),
