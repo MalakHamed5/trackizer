@@ -5,10 +5,17 @@ class AuthTextField extends StatelessWidget {
     super.key,
     required this.name,
     required this.controller,
+    this.validator,
+    this.keyboardType,
+    this.obscureText = false,
   });
 
   final String name;
   final TextEditingController controller;
+  final String? Function(String?)? validator;
+  final TextInputType? keyboardType;
+  final bool obscureText;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -24,6 +31,9 @@ class AuthTextField extends StatelessWidget {
         ),
         TextFormField(
           controller: controller,
+          validator: validator,
+          keyboardType: keyboardType,
+          obscureText: obscureText,
           decoration: InputDecoration(
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(14)),
             enabledBorder: OutlineInputBorder(
@@ -36,6 +46,18 @@ class AuthTextField extends StatelessWidget {
               borderSide: BorderSide(
                 color: Theme.of(context).colorScheme.primaryContainer,
               ),
+            ),
+            errorBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                color: Colors.red,
+              ),
+              borderRadius: BorderRadius.circular(14),
+            ),
+            focusedErrorBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                color: Colors.red,
+              ),
+              borderRadius: BorderRadius.circular(14),
             ),
           ),
         ),

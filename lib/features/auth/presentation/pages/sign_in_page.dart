@@ -64,7 +64,12 @@ class _SignInPageState extends State<SignInPage> {
                 ],
               ),
               SizedBox(height: 20),
-              PrimaryButton(onPressed: () {}, txt: "Sign in"),
+              PrimaryButton(
+                onPressed: () {
+                  context.go(RoutersName.home);
+                },
+                txt: "Sign in",
+              ),
               Spacer(),
               Align(
                 alignment: Alignment.center,
