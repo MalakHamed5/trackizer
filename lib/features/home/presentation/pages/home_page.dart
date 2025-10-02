@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:trackizer/core/cofig/routes/routers_name.dart';
 import 'package:trackizer/core/utils/device_utils.dart';
+import 'package:trackizer/features/home/data/models/subseription_model.dart';
 import 'package:trackizer/features/home/presentation/widgets/custom_arc_paint.dart';
 
+import '../../../../core/cofig/routes/app_router.dart';
 import '../../../../core/const/assets.dart';
 import '../widgets/home_menu.dart';
 import '../widgets/list_tile_active.dart';
+
 import '../widgets/my_bottom_app_bar.dart';
 import '../widgets/my_floationg_acion_button.dart';
 import '../widgets/status_card.dart';
@@ -18,19 +20,38 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  //Data
+  List<SubscriptionModel> scription = [
+    SubscriptionModel(
+      img: Assets.assetsImgSpotifyLogo,
+      title: 'Spotify',
+      price: '\$9.99',
+    ),
+    SubscriptionModel(
+      img: Assets.assetsImgYoutubeLogo,
+      title: 'YouTube Premium',
+      price: '\$5.09',
+    ),
+    SubscriptionModel(
+      img: Assets.assetsImgOnedriveLogo,
+      title: 'Microsoft OneDrive',
+      price: '\$16.99',
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // --- Bottom Navigation Bar ---//
-      floatingActionButton: MyFloatingActionButton(),
+      // --- Bottom Nav Bar ---//
+      floatingActionButton: const MyFloatingActionButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: MyBottmAppBar(currentPage: RoutersName.home),
+      bottomNavigationBar: const MyBottmAppBar(currentPage: AppRouter.home),
       // --- Body ---//
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            // ---Upper part
-            Stack(
+      body: CustomScrollView(
+        slivers: [
+          // ---- Chart 
+          SliverToBoxAdapter(
+            child: Stack(
               children: [
                 Container(
                   height: DeviceUtils.getScreenHeight(context) * 0.55,
@@ -50,13 +71,13 @@ class _HomePageState extends State<HomePage> {
                               width: 270,
                               height: 190,
                               child: CustomPaint(
-                                size: Size(270, 190),
-                                painter: CustomArcPaint(),
+                                size: const Size(270, 190),
+                                painter: const CustomArcPaint(end: 220),
                                 child: Column(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,
                                   children: [
-                                    SizedBox(height: 70),
+                                    const SizedBox(height: 70),
                                     Image.asset(
                                       Assets.assetsImgAppLogo,
                                       fit: BoxFit.contain,
@@ -79,7 +100,7 @@ class _HomePageState extends State<HomePage> {
                                         ),
                                       ),
                                     ),
-                                    SizedBox(height: 5),
+                                    const SizedBox(height: 5),
                                     Text(
                                       "This month bills",
                                       style: TextStyle(
@@ -95,7 +116,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ],
                         ),
-                        SizedBox(height: 80),
+                        const SizedBox(height: 80),
                         //See your budget button
                         InkWell(
                           onTap: () {},
@@ -122,7 +143,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                         ),
-                        Spacer(),
+                        const Spacer(),
                         //Status buttons
                         Container(
                           padding: const EdgeInsets.only(
@@ -130,7 +151,7 @@ class _HomePageState extends State<HomePage> {
                             right: 10,
                             bottom: 16,
                           ),
-                          
+      
                           child: Row(
                             children: [
                               Expanded(
@@ -168,8 +189,10 @@ class _HomePageState extends State<HomePage> {
                 ),
               ],
             ),
-            // --- Menu buttons
-            Container(
+          ),
+          // --- Menu buttons
+          SliverToBoxAdapter(
+            child: Container(
               margin: EdgeInsets.symmetric(
                 horizontal: DeviceUtils.getScreenWidth(context) * 0.04,
                 vertical: DeviceUtils.getScreenWidth(context) * 0.04,
@@ -187,46 +210,31 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   Expanded(
-                    child: HomeMenu(
-                      title: "Upcoming bills",
-                      onPressed: () {},
-                    ),
+                    child: HomeMenu(title: "Upcoming bills", onPressed: () {}),
                   ),
                 ],
               ),
             ),
-            // --- Recent activities
-            //ToDo: but it in listview builder
-            SingleChildScrollView(
-              child: Column(
-                children: [
-                  ListTileActive(
-                    img: Assets.assetsImgSpotifyLogo,
-                    title: 'Spotify',
-                    price: '\$9.99',
-                    onTap: () {},
-                  ),
-                  ListTileActive(
-                    img: Assets.assetsImgYoutubeLogo,
-                    title: 'YouTube Premium',
-                    price: '\$5.09',
-                    onTap: () {},
-                  ),
-                  ListTileActive(
-                    img: Assets.assetsImgOnedriveLogo,
-                    title: 'Microsoft OneDrive',
-                    price: '\$16.99',
-                    onTap: () {},
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
+          ),
+          // --- Recent activities
+          SliverList(
+            delegate: SliverChildBuilderDelegate(
+              childCount: scription.length,
+               (
+              context,
+              i,
+            ) {
+              final script = scription[i];
+              return ListTileActive(
+                img: script.img,
+                title: script.title,
+                price: script.price,
+                onTap: () {},
+              );
+            }),
+          ),
+        ],
       ),
     );
   }
 }
-
-
-

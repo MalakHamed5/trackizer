@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 
 import '../../../../core/const/app_colors.dart';
@@ -8,33 +6,34 @@ class BudgetCard extends StatelessWidget {
   const BudgetCard({
     super.key,
     required this.title,
-    required this.subTitle,
     required this.img,
-    required this.spent,
+    required this.remaining,
     required this.total,
-    required this.progressColor, required this.progress,
+    required this.progressColor,
+    required this.progress,
+    required this.onTap,
   });
 
   final String title;
-  final String subTitle;
+
   final String img;
-  final double spent;
+  final double remaining;
   final double total;
   final Color progressColor;
-  final double progress; 
-
+  final double progress;
+  final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 20 , vertical: 4),
       child: InkWell(
-        onTap: () {},
+        onTap: onTap,
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 18, vertical: 20),
           decoration: BoxDecoration(
             color: Theme.of(
               context,
-            ).colorScheme.secondaryContainer.withOpacity(0.7),
+            ).colorScheme.secondaryContainer.withOpacity(0.5),
             borderRadius: BorderRadius.circular(16),
           ),
           child: Column(
@@ -60,7 +59,8 @@ class BudgetCard extends StatelessWidget {
                           style: Theme.of(context).textTheme.bodyLarge,
                         ),
                         Text(
-                          subTitle,
+                          "\$" + remaining.toString() + " left to spend",
+                          maxLines: 1,
                           style: Theme.of(context).textTheme.labelMedium,
                         ),
                       ],
@@ -70,11 +70,11 @@ class BudgetCard extends StatelessWidget {
                   Column(
                     children: [
                       Text(
-                        "\$${spent.toStringAsFixed(2)}",
+                        "\$${remaining}",
                         style: Theme.of(context).textTheme.bodyLarge,
                       ),
                       Text(
-                        "\$${total.toStringAsFixed(2)}",
+                        "\$${total}",
                         style: Theme.of(context).textTheme.labelMedium,
                       ),
                     ],

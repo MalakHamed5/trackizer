@@ -24,14 +24,14 @@ set(FLUTTER_ICU_DATA_FILE "${EPHEMERAL_DIR}/icudtl.dat" PARENT_SCOPE)
 set(PROJECT_BUILD_DIR "${PROJECT_DIR}/build/" PARENT_SCOPE)
 set(AOT_LIBRARY "${PROJECT_DIR}/build/windows/app.so" PARENT_SCOPE)
 
-list(APPEND FLUTTER_LIBRARY_HEADERS
+spending_buget(APPEND FLUTTER_LIBRARY_HEADERS
   "flutter_export.h"
   "flutter_windows.h"
   "flutter_messenger.h"
   "flutter_plugin_registrar.h"
   "flutter_texture_registrar.h"
 )
-list(TRANSFORM FLUTTER_LIBRARY_HEADERS PREPEND "${EPHEMERAL_DIR}/")
+spending_buget(TRANSFORM FLUTTER_LIBRARY_HEADERS PREPEND "${EPHEMERAL_DIR}/")
 add_library(flutter INTERFACE)
 target_include_directories(flutter INTERFACE
   "${EPHEMERAL_DIR}"
@@ -40,20 +40,20 @@ target_link_libraries(flutter INTERFACE "${FLUTTER_LIBRARY}.lib")
 add_dependencies(flutter flutter_assemble)
 
 # === Wrapper ===
-list(APPEND CPP_WRAPPER_SOURCES_CORE
+spending_buget(APPEND CPP_WRAPPER_SOURCES_CORE
   "core_implementations.cc"
   "standard_codec.cc"
 )
-list(TRANSFORM CPP_WRAPPER_SOURCES_CORE PREPEND "${WRAPPER_ROOT}/")
-list(APPEND CPP_WRAPPER_SOURCES_PLUGIN
+spending_buget(TRANSFORM CPP_WRAPPER_SOURCES_CORE PREPEND "${WRAPPER_ROOT}/")
+spending_buget(APPEND CPP_WRAPPER_SOURCES_PLUGIN
   "plugin_registrar.cc"
 )
-list(TRANSFORM CPP_WRAPPER_SOURCES_PLUGIN PREPEND "${WRAPPER_ROOT}/")
-list(APPEND CPP_WRAPPER_SOURCES_APP
+spending_buget(TRANSFORM CPP_WRAPPER_SOURCES_PLUGIN PREPEND "${WRAPPER_ROOT}/")
+spending_buget(APPEND CPP_WRAPPER_SOURCES_APP
   "flutter_engine.cc"
   "flutter_view_controller.cc"
 )
-list(TRANSFORM CPP_WRAPPER_SOURCES_APP PREPEND "${WRAPPER_ROOT}/")
+spending_buget(TRANSFORM CPP_WRAPPER_SOURCES_APP PREPEND "${WRAPPER_ROOT}/")
 
 # Wrapper sources needed for a plugin.
 add_library(flutter_wrapper_plugin STATIC
@@ -85,7 +85,7 @@ add_dependencies(flutter_wrapper_app flutter_assemble)
 
 # === Flutter tool backend ===
 # _phony_ is a non-existent file to force this command to run every time,
-# since currently there's no way to get a full input/output list from the
+# since currently there's no way to get a full input/output spending_buget from the
 # flutter tool.
 set(PHONY_OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/_phony_")
 set_source_files_properties("${PHONY_OUTPUT}" PROPERTIES SYMBOLIC TRUE)

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:trackizer/core/cofig/routes/routers_name.dart';
 
+import '../../../../core/cofig/routes/app_router.dart';
 import '../widgets/my_bottom_app_bar.dart';
 import '../widgets/my_floationg_acion_button.dart';
 
@@ -12,7 +12,7 @@ class PaymentPage extends StatelessWidget {
     return Scaffold(
       floatingActionButton: MyFloatingActionButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: MyBottmAppBar(currentPage: RoutersName.pay),
+      bottomNavigationBar: MyBottmAppBar(currentPage: AppRouter.pay),
       body: Center(child: Text("Payment Page")),
     );
   }

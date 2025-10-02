@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:trackizer/core/cofig/routes/app_router.dart';
 import 'package:trackizer/core/utils/device_utils.dart';
 import 'package:trackizer/features/auth/presentation/widgets/auth_header.dart';
 import 'package:trackizer/features/auth/presentation/widgets/auth_text_field.dart';
 import 'package:trackizer/features/auth/presentation/widgets/primary_button.dart';
 import 'package:trackizer/features/auth/presentation/widgets/secondary_button.dart';
 
-import '../../../../core/cofig/routes/routers_name.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
@@ -66,7 +66,7 @@ class _SignInPageState extends State<SignInPage> {
               SizedBox(height: 20),
               PrimaryButton(
                 onPressed: () {
-                  context.go(RoutersName.home);
+                  context.go(AppRouter.home);
                 },
                 txt: "Sign in",
               ),
@@ -83,7 +83,7 @@ class _SignInPageState extends State<SignInPage> {
               SizedBox(height: 10),
               SecondaryButton(
                 onPressed: () {
-                  context.push(RoutersName.signup);
+                  context.push(AppRouter.signup);
                 },
                 txt: "Sign up",
               ),

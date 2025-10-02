@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:trackizer/core/utils/device_utils.dart';
 import 'package:trackizer/features/auth/presentation/widgets/secondary_button.dart';
 
-import '../../../../core/cofig/routes/routers_name.dart';
+import '../../../../core/cofig/routes/app_router.dart';
 import '../../../../core/const/assets.dart';
 import '../widgets/auth_header.dart';
 import '../widgets/primary_button.dart';
@@ -50,7 +50,7 @@ class _WelcomePageState extends State<WelcomePage> {
                   SizedBox(height: 20),
                   PrimaryButton(
                     onPressed: () {
-                      context.push(RoutersName.signup);
+                      context.push(AppRouter.signup);
                     },
 
                     txt: 'Get Started',
@@ -58,7 +58,7 @@ class _WelcomePageState extends State<WelcomePage> {
                   SizedBox(height: 20),
                   SecondaryButton(
                     onPressed: () {
-                      context.push(RoutersName.signin);
+                      context.push(AppRouter.signin);
                     },
                     txt: 'I have an account',
                   ),

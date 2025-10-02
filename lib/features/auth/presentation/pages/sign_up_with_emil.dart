@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:trackizer/core/cofig/routes/routers_name.dart';
 import 'package:trackizer/core/utils/device_utils.dart';
 import 'package:trackizer/features/auth/presentation/widgets/auth_header.dart';
 import 'package:trackizer/features/auth/presentation/widgets/auth_text_field.dart';
 import 'package:trackizer/features/auth/presentation/widgets/primary_button.dart';
-import 'package:trackizer/features/auth/presentation/widgets/secondary_button.dart';
+
+import '../../../../core/cofig/routes/app_router.dart';
 
 class SignUpWithEmil extends StatefulWidget {
   const SignUpWithEmil({super.key});
@@ -91,7 +91,7 @@ class _SignUpWithEmilState extends State<SignUpWithEmil> {
     });
 
     if (mounted) {
-      context.push(RoutersName.home);
+      context.push(AppRouter.home);
     }
   }
 
@@ -208,7 +208,7 @@ class _SignUpWithEmilState extends State<SignUpWithEmil> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          context.push(RoutersName.signin);
+                          context.push(AppRouter.signin);
                         },
                         child: Text(
                           "Sign In",

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:trackizer/core/cofig/routes/routers_name.dart';
 import 'package:trackizer/features/auth/presentation/widgets/auth_header.dart';
 
+import '../../../../core/cofig/routes/app_router.dart';
 import '../../../../core/const/assets.dart';
 import '../../../../core/utils/device_utils.dart';
 import '../widgets/secondary_button.dart';
@@ -58,7 +58,7 @@ class SignUpWith extends StatelessWidget {
                 padding: EdgeInsetsGeometry.only(bottom: 10),
                 child: SecondaryButton(
                   onPressed: () {
-                    context.push(RoutersName.singupWithEmil);
+                    context.push(AppRouter.singupWithEmil);
                   },
                   txt: "Sing up with E-mail",
                 ),

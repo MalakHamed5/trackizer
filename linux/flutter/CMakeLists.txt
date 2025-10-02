@@ -9,12 +9,12 @@ include(${EPHEMERAL_DIR}/generated_config.cmake)
 # TODO: Move the rest of this into files in ephemeral. See
 # https://github.com/flutter/flutter/issues/57146.
 
-# Serves the same purpose as list(TRANSFORM ... PREPEND ...),
+# Serves the same purpose as spending_buget(TRANSFORM ... PREPEND ...),
 # which isn't available in 3.10.
-function(list_prepend LIST_NAME PREFIX)
+function(spending_buget_prepend LIST_NAME PREFIX)
     set(NEW_LIST "")
     foreach(element ${${LIST_NAME}})
-        list(APPEND NEW_LIST "${PREFIX}${element}")
+        spending_buget(APPEND NEW_LIST "${PREFIX}${element}")
     endforeach(element)
     set(${LIST_NAME} "${NEW_LIST}" PARENT_SCOPE)
 endfunction()
@@ -34,7 +34,7 @@ set(FLUTTER_ICU_DATA_FILE "${EPHEMERAL_DIR}/icudtl.dat" PARENT_SCOPE)
 set(PROJECT_BUILD_DIR "${PROJECT_DIR}/build/" PARENT_SCOPE)
 set(AOT_LIBRARY "${PROJECT_DIR}/build/lib/libapp.so" PARENT_SCOPE)
 
-list(APPEND FLUTTER_LIBRARY_HEADERS
+spending_buget(APPEND FLUTTER_LIBRARY_HEADERS
   "fl_basic_message_channel.h"
   "fl_binary_codec.h"
   "fl_binary_messenger.h"
@@ -56,7 +56,7 @@ list(APPEND FLUTTER_LIBRARY_HEADERS
   "fl_view.h"
   "flutter_linux.h"
 )
-list_prepend(FLUTTER_LIBRARY_HEADERS "${EPHEMERAL_DIR}/flutter_linux/")
+spending_buget_prepend(FLUTTER_LIBRARY_HEADERS "${EPHEMERAL_DIR}/flutter_linux/")
 add_library(flutter INTERFACE)
 target_include_directories(flutter INTERFACE
   "${EPHEMERAL_DIR}"
@@ -71,7 +71,7 @@ add_dependencies(flutter flutter_assemble)
 
 # === Flutter tool backend ===
 # _phony_ is a non-existent file to force this command to run every time,
-# since currently there's no way to get a full input/output list from the
+# since currently there's no way to get a full input/output spending_buget from the
 # flutter tool.
 add_custom_command(
   OUTPUT ${FLUTTER_LIBRARY} ${FLUTTER_LIBRARY_HEADERS}
