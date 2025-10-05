@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
-import 'package:trackizer/core/utils/device_utils.dart';
-import 'package:trackizer/features/auth/presentation/widgets/secondary_button.dart';
+import 'package:trackizer/core/shared/buttons/secondary_btn.dart';
 
 import '../../../../core/cofig/routes/app_router.dart';
 import '../../../../core/const/assets.dart';
+import '../../../../core/utils/tools.dart';
 import '../widgets/auth_header.dart';
-import '../widgets/primary_button.dart';
+import '../../../../core/shared/buttons/primary_btn.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});
@@ -30,8 +30,8 @@ class _WelcomePageState extends State<WelcomePage> {
         children: [
           Image.asset(
             Assets.assetsImgWelcomeScreen,
-            width: DeviceUtils.getScreenWidth(context),
-            height: DeviceUtils.getScreenHeight(context),
+            width: appW,
+            height: appH,
             fit: BoxFit.cover,
           ),
           SafeArea(
@@ -40,14 +40,14 @@ class _WelcomePageState extends State<WelcomePage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  AuthHeader(),
-                  Spacer(),
+                  const AuthHeader(),
+                  const Spacer(),
                   Text(
                     "Welcome! This app is here to inspire, guide, and\n support you every step of the way. Let’s begin the journey together",
-                    style: TextStyle(color: Colors.white, fontSize: 16),
+                    style: TextStyle(color: appColor.onPrimary, fontSize: 16),
                     textAlign: TextAlign.center,
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   PrimaryButton(
                     onPressed: () {
                       context.push(AppRouter.signup);
@@ -55,7 +55,7 @@ class _WelcomePageState extends State<WelcomePage> {
 
                     txt: 'Get Started',
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   SecondaryButton(
                     onPressed: () {
                       context.push(AppRouter.signin);

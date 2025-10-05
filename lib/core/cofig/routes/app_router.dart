@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:trackizer/features/home/presentation/pages/new_subscription.dart';
 import 'package:trackizer/features/home/presentation/pages/spending_budget_page.dart';
 
 import '../../../features/auth/presentation/pages/sign_in_page.dart';
@@ -18,8 +19,9 @@ class AppRouter {
   static const calendar = '/calendar';
   static const pay = '/pay';
   static const spendingBuget = '/spendingBuget';
+  static const sub = '/newsubscription';
 
- static  final GoRouter router = GoRouter(
+  static final GoRouter router = GoRouter(
     initialLocation: welcome,
     routes: [
       GoRoute(path: welcome, builder: (context, state) => const WelcomePage()),
@@ -29,6 +31,7 @@ class AppRouter {
         builder: (context, state) => const SignUpWithEmil(),
       ),
       GoRoute(path: signin, builder: (context, state) => const SignInPage()),
+      GoRoute(path: sub, builder: (context, state) => const NewSubscription()),
       GoRoute(path: home, builder: (context, state) => const HomePage()),
       GoRoute(
         path: calendar,

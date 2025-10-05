@@ -6,6 +6,7 @@ import 'package:trackizer/features/home/presentation/widgets/appbar_text.dart';
 import 'dart:math';
 
 import '../../../../core/cofig/routes/app_router.dart';
+import '../../../../core/const/app_colors.dart';
 import '../../../../core/const/assets.dart';
 import '../../../../core/utils/device_utils.dart';
 import '../../data/models/subseription_model.dart';
@@ -58,10 +59,10 @@ class _CalendarPageState extends State<CalendarPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: const MyFloatingActionButton(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       // --- Bottom Nav Bar ---//
       extendBody: true,
-      floatingActionButton: MyFloatingActionButton(onPressed: () {}),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: const MyBottmAppBar(currentPage: AppRouter.calendar),
       // --- Body ---//
       body: SafeArea(
@@ -77,7 +78,7 @@ class _CalendarPageState extends State<CalendarPage> {
             //---Header part
             SliverToBoxAdapter(
               child: Container(
-                height: DeviceUtils.getScreenHeight(context) * 0.37,
+                height: DeviceUtils.getScreenHeight(context) * 0.35,
                 width: double.infinity,
                 decoration: BoxDecoration(
                   color: Theme.of(
@@ -94,7 +95,7 @@ class _CalendarPageState extends State<CalendarPage> {
                     horizontal: 16.0,
                     vertical: 16,
                   ),
-                  child: Column(
+                  child: Column(  
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text(
@@ -127,18 +128,24 @@ class _CalendarPageState extends State<CalendarPage> {
                                   color: Colors.white.withOpacity(0.1),
                                 ),
                               ),
-                              child: const Row(
-                                children: [
-                                  Text(
-                                    'January',
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                  Icon(
-                                    Icons.keyboard_arrow_down,
-                                    color: Colors.white,
-                                    size: 14,
-                                  ),
-                                ],
+                              child: InkWell(
+                                onTap: () {
+                                  calendarAgendaControllerNotAppBar
+                                      .openCalender();
+                                },
+                                child: const Row(
+                                  children: [
+                                    Text(
+                                      'January',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                    Icon(
+                                      Icons.keyboard_arrow_down,
+                                      color: Colors.white,
+                                      size: 14,
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
@@ -146,8 +153,12 @@ class _CalendarPageState extends State<CalendarPage> {
                       ),
                       //--- Calendar
                       CalendarAgenda(
+                        calendarEventColor: Theme.of(
+                          context,
+                        ).colorScheme.secondary,
                         controller: calendarAgendaControllerNotAppBar,
                         backgroundColor: Colors.transparent,
+                        fullCalenderBackground: AppColors.backgroundDark,
                         decoration: BoxDecoration(
                           color: Theme.of(
                             context,
@@ -167,7 +178,6 @@ class _CalendarPageState extends State<CalendarPage> {
                           ),
                         ),
                         selectedDateColor: Colors.white,
-
                         eventLogo: Container(
                           height: 5,
                           width: 5,
@@ -176,11 +186,9 @@ class _CalendarPageState extends State<CalendarPage> {
                             color: Theme.of(context).colorScheme.secondary,
                           ),
                         ),
-
                         locale: 'en',
                         weekDay: WeekDay.short,
                         fullCalendarDay: WeekDay.short,
-
                         initialDate: DateTime.now(),
                         firstDate: DateTime.now().subtract(
                           const Duration(days: 140),
@@ -307,8 +315,8 @@ class _CalendarPageState extends State<CalendarPage> {
               }, childCount: scription.length),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                crossAxisSpacing: 0, mainAxisSpacing: 1
-
+                crossAxisSpacing: 0,
+                mainAxisSpacing: 1,
               ),
             ),
 

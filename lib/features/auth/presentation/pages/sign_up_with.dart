@@ -5,7 +5,7 @@ import 'package:trackizer/features/auth/presentation/widgets/auth_header.dart';
 import '../../../../core/cofig/routes/app_router.dart';
 import '../../../../core/const/assets.dart';
 import '../../../../core/utils/device_utils.dart';
-import '../widgets/secondary_button.dart';
+import '../../../../core/shared/buttons/secondary_btn.dart';
 import '../widgets/social_buttons.dart';
 
 class SignUpWith extends StatelessWidget {
@@ -21,7 +21,7 @@ class SignUpWith extends StatelessWidget {
           child: Column(
             children: [
               //---- Logo
-              AuthHeader(),
+              const AuthHeader(),
               SizedBox(height: DeviceUtils.getScreenHeight(context) * 0.40),
               //---- Sign with apple
               SocialButtons(
@@ -31,7 +31,7 @@ class SignUpWith extends StatelessWidget {
                 color: Colors.black,
                 textColor: Colors.white,
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               //----- Sign with Google
               SocialButtons(
                 img: Assets.assetsImgGoogle,
@@ -40,7 +40,7 @@ class SignUpWith extends StatelessWidget {
                 color: Colors.white,
                 textColor: Colors.black,
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               //------ Sign with Facebook
               SocialButtons(
                 img: Assets.assetsImgFb,
@@ -50,12 +50,12 @@ class SignUpWith extends StatelessWidget {
                 textColor: Theme.of(context).colorScheme.onPrimary,
               ),
               //---- Or text
-              SizedBox(height: 30),
-              Text("or", textAlign: TextAlign.center),
-              Spacer(),
+              const SizedBox(height: 30),
+              const Text("or", textAlign: TextAlign.center),
+              const Spacer(),
               //----Sign with Email
               Padding(
-                padding: EdgeInsetsGeometry.only(bottom: 10),
+                padding: const EdgeInsetsGeometry.only(bottom: 10),
                 child: SecondaryButton(
                   onPressed: () {
                     context.push(AppRouter.singupWithEmil);
@@ -63,7 +63,7 @@ class SignUpWith extends StatelessWidget {
                   txt: "Sing up with E-mail",
                 ),
               ),
-              SizedBox(height: 3),
+              const SizedBox(height: 3),
               Padding(
                 padding: const EdgeInsets.only(bottom: 20),
                 child: Text(

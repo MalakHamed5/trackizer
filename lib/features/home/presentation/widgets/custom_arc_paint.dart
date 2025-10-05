@@ -20,7 +20,7 @@ class CustomArcPaint extends CustomPainter {
       center: Offset(size.width / 2, size.height),
       radius: size.width * 0.58,
     );
-    LinearGradient gradientColor = LinearGradient(
+    LinearGradient gradientColor = const LinearGradient(
       colors: [
         AppColors.secondary,
         AppColors.secondary20,
@@ -46,7 +46,7 @@ class CustomArcPaint extends CustomPainter {
       ..color = AppColors.secondary.withOpacity(0.3)
       ..style = PaintingStyle.stroke
       ..strokeWidth = width + blurWidth
-      ..maskFilter = MaskFilter.blur(BlurStyle.normal, 5);
+      ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 5);
 
     var strVal = 135.0 + start;
 

@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 
 import '../../const/app_colors.dart';
@@ -32,15 +34,15 @@ ThemeData getDarkTheme() {
       size: 26,
     ),
     // --- Text Theme
-    textTheme: TextTheme(
-      titleMedium: const TextStyle(color: AppColors.gray30),
+    textTheme: const TextTheme(
+      titleMedium: TextStyle(color: AppColors.gray30),
       bodyLarge: TextStyle(fontWeight: FontWeight.bold),
       labelMedium: TextStyle(color: AppColors.gray30),
       bodyMedium: TextStyle(
         color: AppColors.gray30,
         fontWeight: FontWeight.bold,
       ),
-      titleLarge: const TextStyle(color: AppColors.gray30 , fontWeight: FontWeight.w500 )
+      titleLarge: TextStyle(color: AppColors.gray30 , fontWeight: FontWeight.w500 )
     ),
   );
 }

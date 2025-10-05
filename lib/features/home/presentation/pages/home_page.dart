@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:trackizer/core/utils/device_utils.dart';
 import 'package:trackizer/features/home/data/models/subseription_model.dart';
@@ -42,14 +44,15 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // --- Bottom Nav Bar ---//
       floatingActionButton: const MyFloatingActionButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+
+      // --- Bottom Nav Bar ---//
       bottomNavigationBar: const MyBottmAppBar(currentPage: AppRouter.home),
       // --- Body ---//
       body: CustomScrollView(
         slivers: [
-          // ---- Chart 
+          // ---- Chart
           SliverToBoxAdapter(
             child: Stack(
               children: [
@@ -151,7 +154,7 @@ class _HomePageState extends State<HomePage> {
                             right: 10,
                             bottom: 16,
                           ),
-      
+
                           child: Row(
                             children: [
                               Expanded(
@@ -218,9 +221,7 @@ class _HomePageState extends State<HomePage> {
           ),
           // --- Recent activities
           SliverList(
-            delegate: SliverChildBuilderDelegate(
-              childCount: scription.length,
-               (
+            delegate: SliverChildBuilderDelegate(childCount: scription.length, (
               context,
               i,
             ) {

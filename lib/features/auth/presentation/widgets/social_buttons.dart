@@ -21,7 +21,7 @@ class SocialButtons extends StatelessWidget {
       onTap: onPressed,
       child: Container(
         width: double.infinity,
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
         decoration: BoxDecoration(
           color: color,
           borderRadius: BorderRadius.circular(30),
@@ -29,7 +29,7 @@ class SocialButtons extends StatelessWidget {
         child: Row(
           children: [
             Image.asset(img, width: 18, height: 18, fit: BoxFit.cover),
-            SizedBox(width: 8),
+            const SizedBox(width: 8),
             Text(
               txt,
               style: TextStyle(

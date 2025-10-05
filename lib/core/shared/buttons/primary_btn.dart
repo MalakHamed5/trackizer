@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trackizer/core/utils/tools.dart';
 
 class PrimaryButton extends StatelessWidget {
   const PrimaryButton({
@@ -19,16 +20,13 @@ class PrimaryButton extends StatelessWidget {
       onTap: onPressed,
       child: Container(
         width: double.infinity,
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
-              color: Theme.of(
-                context,
-                // ignore: deprecated_member_use
-              ).colorScheme.secondary.withOpacity(0.5),
+              color: appColor.secondary.withOpacity(0.5),
               blurRadius: 15,
-              offset: Offset(0, 7),
+              offset: const Offset(0, 7),
             ),
           ],
           color: Theme.of(context).colorScheme.secondary,
@@ -37,8 +35,8 @@ class PrimaryButton extends StatelessWidget {
         child: Center(
           child: Text(
             txt,
-            style: TextStyle(
-              color: Colors.white,
+            style:  TextStyle(
+              color: appColor.onPrimary,
               fontSize: 16,
               fontWeight: FontWeight.bold,
             ),
@@ -50,17 +48,3 @@ class PrimaryButton extends StatelessWidget {
   }
 }
 
-/**BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-              color: Theme.of(
-                context,
-                // ignore: deprecated_member_use
-              ).colorScheme.secondary.withOpacity(0.5),
-              blurRadius: 15,
-              offset: Offset(0, 7),
-            ),
-          ],
-          color: Theme.of(context).colorScheme.secondary,
-          borderRadius: BorderRadius.circular(20),
-        ), */

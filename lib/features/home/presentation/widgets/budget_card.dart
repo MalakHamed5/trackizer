@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 
 import '../../../../core/const/app_colors.dart';
@@ -29,7 +31,7 @@ class BudgetCard extends StatelessWidget {
       child: InkWell(
         onTap: onTap,
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 18, vertical: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 20),
           decoration: BoxDecoration(
             color: Theme.of(
               context,
@@ -46,7 +48,7 @@ class BudgetCard extends StatelessWidget {
                     width: 40,
                     color: Theme.of(context).colorScheme.tertiaryContainer,
                   ),
-                  SizedBox(width: 18),
+                  const SizedBox(width: 18),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -66,7 +68,7 @@ class BudgetCard extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Column(
                     children: [
                       Text(
@@ -81,7 +83,7 @@ class BudgetCard extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 18),
+              const SizedBox(height: 18),
               ClipRRect(
                 borderRadius: BorderRadiusGeometry.circular(8),
                 child: LinearProgressIndicator(

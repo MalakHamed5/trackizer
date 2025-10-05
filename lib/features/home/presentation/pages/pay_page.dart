@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
 import '../../../../core/cofig/routes/app_router.dart';
@@ -9,11 +11,11 @@ class PaymentPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: MyFloatingActionButton(),
+    return Scaffold(   floatingActionButton: const MyFloatingActionButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: MyBottmAppBar(currentPage: AppRouter.pay),
-      body: Center(child: Text("Payment Page")),
+     
+      bottomNavigationBar: const MyBottmAppBar(currentPage: AppRouter.pay),
+      body:const Center(child:  Text("Payment Page")),
     );
   }
 }

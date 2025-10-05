@@ -4,8 +4,8 @@ import 'package:trackizer/core/cofig/routes/app_router.dart';
 import 'package:trackizer/core/utils/device_utils.dart';
 import 'package:trackizer/features/auth/presentation/widgets/auth_header.dart';
 import 'package:trackizer/features/auth/presentation/widgets/auth_text_field.dart';
-import 'package:trackizer/features/auth/presentation/widgets/primary_button.dart';
-import 'package:trackizer/features/auth/presentation/widgets/secondary_button.dart';
+import 'package:trackizer/core/shared/buttons/primary_btn.dart';
+import 'package:trackizer/core/shared/buttons/secondary_btn.dart';
 
 
 class SignInPage extends StatefulWidget {
@@ -29,12 +29,12 @@ class _SignInPageState extends State<SignInPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              AuthHeader(),
+              const AuthHeader(),
               SizedBox(height: DeviceUtils.getScreenHeight(context) * 0.25),
               AuthTextField(name: 'Login', controller: emailController),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               AuthTextField(name: "Password", controller: passController),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Row(
                 children: [
                   Checkbox(
@@ -51,7 +51,7 @@ class _SignInPageState extends State<SignInPage> {
                       color: Theme.of(context).colorScheme.onSecondary,
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   TextButton(
                     onPressed: () {},
                     child: Text(
@@ -63,14 +63,14 @@ class _SignInPageState extends State<SignInPage> {
                   ),
                 ],
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               PrimaryButton(
                 onPressed: () {
                   context.go(AppRouter.home);
                 },
                 txt: "Sign in",
               ),
-              Spacer(),
+              const Spacer(),
               Align(
                 alignment: Alignment.center,
                 child: Text(
@@ -80,14 +80,14 @@ class _SignInPageState extends State<SignInPage> {
                   ),
                 ),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               SecondaryButton(
                 onPressed: () {
                   context.push(AppRouter.signup);
                 },
                 txt: "Sign up",
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
             ],
           ),
         ),

@@ -1,4 +1,8 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
+
+import '../../utils/tools.dart';
 
 class SecondaryButton extends StatelessWidget {
   const SecondaryButton({
@@ -17,16 +21,16 @@ class SecondaryButton extends StatelessWidget {
       onTap: onPressed,
       child: Container(
         width: double.infinity,
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.surface.withOpacity(0.3),
+          color:  appColor.surface.withOpacity(0.3),
           borderRadius: BorderRadius.circular(30),
         ),
         child: Center(
           child: Text(
             txt,
-            style: TextStyle(
-              color: Colors.white,
+            style:  TextStyle(
+              color: appColor.onPrimary,
               fontSize: 14,
               fontWeight: FontWeight.bold,
             ),

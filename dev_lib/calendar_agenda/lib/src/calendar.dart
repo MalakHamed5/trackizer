@@ -1,4 +1,4 @@
-// ignore_for_file: deprecated_member_use
+// ignore_for_file: deprecated_member_use, prefer_const_constructors
 
 import 'package:calendar_agenda/calendar_agenda.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +8,6 @@ import 'package:intl/intl.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 import 'fullcalendar.dart';
-import 'typedata.dart';
 
 class CalendarAgenda extends StatefulWidget implements PreferredSizeWidget {
   final CalendarAgendaController? controller;
@@ -26,6 +25,7 @@ class CalendarAgenda extends StatefulWidget implements PreferredSizeWidget {
   final Color? calendarBackground;
   final Color? calendarEventSelectedColor;
   final Color? calendarEventColor;
+  final Color? fullCalenderBackground; 
   final Widget? selectedEventLogo;
   final Widget? eventLogo;
   final FullCalendarScroll fullCalendarScroll;
@@ -74,7 +74,7 @@ class CalendarAgenda extends StatefulWidget implements PreferredSizeWidget {
     this.selectedEventLogo,
     this.eventLogo,
     this.decoration,
-    this.selectedDecoration,
+    this.selectedDecoration, this.fullCalenderBackground,
   })  : assert(
           initialDate.difference(firstDate).inDays >= 0,
           'initialDate must be on or after firstDate',
@@ -93,12 +93,12 @@ class CalendarAgenda extends StatefulWidget implements PreferredSizeWidget {
   CalendarAgendaState createState() => CalendarAgendaState();
 
   @override
-  Size get preferredSize => new Size.fromHeight(250.0);
+  Size get preferredSize => Size.fromHeight(250.0);
 }
 
 class CalendarAgendaState extends State<CalendarAgenda>
     with TickerProviderStateMixin {
-  ItemScrollController _scrollController = new ItemScrollController();
+  ItemScrollController _scrollController = ItemScrollController();
 
   late Color backgroundColor;
   late double padding;
@@ -181,7 +181,7 @@ class CalendarAgendaState extends State<CalendarAgenda>
                       decoration: isSelected &&
                               (widget.selectedDecoration != null)
                           ? widget.selectedDecoration!
-                          : ( widget.decoration != null)
+                          : (widget.decoration != null)
                               ? widget.decoration!
                               : BoxDecoration(
                                   borderRadius: BorderRadius.circular(10.0),
@@ -196,8 +196,7 @@ class CalendarAgendaState extends State<CalendarAgenda>
                                             offset: const Offset(0, 3),
                                           )
                                         : BoxShadow(
-                                            color:
-                                                Colors.grey.withOpacity(0.0),
+                                            color: Colors.grey.withOpacity(0.0),
                                             spreadRadius: 5,
                                             blurRadius: 20,
                                             offset: const Offset(0, 3),
@@ -239,12 +238,10 @@ class CalendarAgendaState extends State<CalendarAgenda>
                             ),
                           ),
                           const Spacer(),
-                          _eventDates
-                                  .contains(date.toString().split(" ").first)
-                              ? (isSelected &&
-                                      widget.selectedEventLogo != null)
+                          _eventDates.contains(date.toString().split(" ").first)
+                              ? (isSelected && widget.selectedEventLogo != null)
                                   ? widget.selectedEventLogo!
-                                  : ( widget.eventLogo != null)
+                                  : (widget.eventLogo != null)
                                       ? widget.eventLogo!
                                       : const SizedBox(height: 5)
                               : const SizedBox(height: 2),
@@ -261,7 +258,7 @@ class CalendarAgendaState extends State<CalendarAgenda>
 
     return SizedBox(
       width: MediaQuery.of(context).size.width,
-      height: widget.appbar ? 150 : 130.0,
+      height: widget.appbar ? 210 : 120.0,
       child: Stack(
         children: [
           Positioned(
@@ -300,6 +297,8 @@ class CalendarAgendaState extends State<CalendarAgenda>
 
   showFullCalendar() {
     showModalBottomSheet<void>(
+      backgroundColor: widget.fullCalenderBackground,
+      
       context: context,
       isScrollControlled: true,
       shape: const RoundedRectangleBorder(
@@ -317,7 +316,7 @@ class CalendarAgendaState extends State<CalendarAgenda>
         } else {
           height = (MediaQuery.of(context).size.height - 100.0);
         }
-        return Container(
+        return SizedBox(
           height: widget.fullCalendarScroll == FullCalendarScroll.vertical
               ? height
               : (MediaQuery.of(context).size.height / 7) * 4.3,

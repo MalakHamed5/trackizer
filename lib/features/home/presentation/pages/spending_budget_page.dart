@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:trackizer/core/const/app_colors.dart';
 import 'package:trackizer/features/home/presentation/widgets/cutom_arc_180_painter.dart';
@@ -67,16 +69,15 @@ class _SpendingBugetPageState extends State<SpendingBugetPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.backgroundDark,
-      floatingActionButton: MyFloatingActionButton(),
+    return Scaffold(   floatingActionButton: const MyFloatingActionButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: MyBottmAppBar(currentPage: AppRouter.spendingBuget),
+      backgroundColor: AppColors.backgroundDark,
+      bottomNavigationBar: const MyBottmAppBar(currentPage: AppRouter.spendingBuget),
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
             // -- AppBar
-            AppBarText(
+            const AppBarText(
               text: "Spending & Budgets",
               backgroundColor: Colors.transparent,
             ),
@@ -110,7 +111,7 @@ class _SpendingBugetPageState extends State<SpendingBugetPage> {
                         ),
                         child: Column(
                           children: [
-                            SizedBox(height: 80),
+                            const SizedBox(height: 80),
                             Text(
                               "\$8.099",
                               style: TextStyle(
@@ -142,13 +143,13 @@ class _SpendingBugetPageState extends State<SpendingBugetPage> {
             //--- Your budgets are on track
             SliverToBoxAdapter(
               child: Container(
-                margin: EdgeInsets.only(
+                margin: const EdgeInsets.only(
                   top: 30,
                   bottom: 16,
                   left: 16,
                   right: 16,
                 ),
-                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 70),
+                padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 70),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   border: Border.all(
@@ -190,7 +191,7 @@ class _SpendingBugetPageState extends State<SpendingBugetPage> {
                 child: InkWell(
                   onTap: () {},
                   child: Container(
-                    padding: EdgeInsets.symmetric(vertical: 25, horizontal: 80),
+                    padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 80),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       border: Border.all(
@@ -205,8 +206,8 @@ class _SpendingBugetPageState extends State<SpendingBugetPage> {
                           style: Theme.of(context).textTheme.bodyMedium,
                           textAlign: TextAlign.center,
                         ),
-                        SizedBox(width: 10),
-                        Icon(Icons.add_circle_outline_sharp, size: 20),
+                        const SizedBox(width: 10),
+                        const Icon(Icons.add_circle_outline_sharp, size: 20),
                       ],
                     ),
                   ),

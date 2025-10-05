@@ -13,10 +13,8 @@ class MyBottmAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.fromLTRB(hpad, 0, hpad, 16),
-      decoration:const BoxDecoration(
-        
-      ),
-      child: ClipRRect(  
+      decoration: const BoxDecoration(),
+      child: ClipRRect(
         borderRadius: BorderRadiusGeometry.circular(20),
         child: BottomAppBar(
           notchMargin: 8,
@@ -38,7 +36,7 @@ class MyBottmAppBar extends StatelessWidget {
                   icon: Icons.dashboard,
                 ),
               ),
-              Spacer(),
+              const Spacer(),
               Expanded(
                 child: BottomAppIcon(
                   currentPage: currentPage,
@@ -93,7 +91,6 @@ class InsetCircularNotchedRectangle extends CircularNotchedRectangle {
 
   @override
   Path getOuterPath(Rect host, Rect? guest) {
-    
     final shiftedGuest = guest?.shift(Offset(-inset, 0));
     return super.getOuterPath(host, shiftedGuest);
   }

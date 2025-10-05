@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:trackizer/core/utils/device_utils.dart';
 import 'package:trackizer/features/auth/presentation/widgets/auth_header.dart';
 import 'package:trackizer/features/auth/presentation/widgets/auth_text_field.dart';
-import 'package:trackizer/features/auth/presentation/widgets/primary_button.dart';
+import 'package:trackizer/core/shared/buttons/primary_btn.dart';
 
 import '../../../../core/cofig/routes/app_router.dart';
 
@@ -84,7 +84,7 @@ class _SignUpWithEmilState extends State<SignUpWithEmil> {
     });
 
     // Simulate API call
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 2));
 
     setState(() {
       _isLoading = false;
@@ -108,7 +108,7 @@ class _SignUpWithEmilState extends State<SignUpWithEmil> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  AuthHeader(),
+                  const AuthHeader(),
                   SizedBox(height: DeviceUtils.getScreenHeight(context) * 0.15),
                   
                   // Title
@@ -120,7 +120,7 @@ class _SignUpWithEmilState extends State<SignUpWithEmil> {
                       color: Theme.of(context).colorScheme.onPrimary,
                     ),
                   ),
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
                   Text(
                     'Sign up to get started',
                     style: TextStyle(
@@ -128,7 +128,7 @@ class _SignUpWithEmilState extends State<SignUpWithEmil> {
                       color: Theme.of(context).colorScheme.onSecondary,
                     ),
                   ),
-                  SizedBox(height: 30),
+                  const SizedBox(height: 30),
 
                   // Name field
                   AuthTextField(
@@ -136,7 +136,7 @@ class _SignUpWithEmilState extends State<SignUpWithEmil> {
                     controller: nameController,
                     validator: _validateName,
                   ),
-                  SizedBox(height: 15),
+                  const SizedBox(height: 15),
 
                   // Email field
                   AuthTextField(
@@ -145,7 +145,7 @@ class _SignUpWithEmilState extends State<SignUpWithEmil> {
                     validator: _validateEmail,
                     keyboardType: TextInputType.emailAddress,
                   ),
-                  SizedBox(height: 15),
+                  const SizedBox(height: 15),
 
                   // Password field
                   _buildPasswordField(
@@ -159,7 +159,7 @@ class _SignUpWithEmilState extends State<SignUpWithEmil> {
                       });
                     },
                   ),
-                  SizedBox(height: 15),
+                  const SizedBox(height: 15),
 
                   // Confirm Password field
                   _buildPasswordField(
@@ -174,7 +174,7 @@ class _SignUpWithEmilState extends State<SignUpWithEmil> {
                     },
                   ),
 
-                  SizedBox(height: 30),
+                  const SizedBox(height: 30),
                   
                   // Sign up button
                   PrimaryButton(
@@ -182,7 +182,7 @@ class _SignUpWithEmilState extends State<SignUpWithEmil> {
                     txt: _isLoading ? "Creating Account..." : "Get Started, it's free!",
                   ),
                   
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   
                   // Terms text
                   Text(
@@ -194,7 +194,7 @@ class _SignUpWithEmilState extends State<SignUpWithEmil> {
                     textAlign: TextAlign.center,
                   ),
                   
-                  SizedBox(height: 30),
+                  const SizedBox(height: 30),
                   
                   // Sign in link
                   Row(
@@ -221,7 +221,7 @@ class _SignUpWithEmilState extends State<SignUpWithEmil> {
                     ],
                   ),
                   
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                 ],
               ),
             ),

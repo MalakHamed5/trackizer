@@ -1,24 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:trackizer/core/utils/tools.dart';
 
-class AppBarText extends StatelessWidget {
-  const AppBarText({
-    super.key,
-    required this.text,
-    required this.backgroundColor,
-  });
-  final String text;
-  final Color backgroundColor;
-
-  @override
-  Widget build(BuildContext context) {
+// to fix context you can use approute to get valid context
+extension CustomSliverAppBar on SliverAppBar {
+  
+  ourSliver({required String text, Color? backgroundColor}) {
     return SliverAppBar(
-      
       automaticallyImplyLeading: false,
-      expandedHeight: 160,
       elevation: 0,
       flexibleSpace: FlexibleSpaceBar(
-        title: Center(child: Text(text, style: const TextStyle(fontSize: 14))),
+        title: Center(child: Text(text, style: tstyle.titleLarge)),
       ),
       backgroundColor: backgroundColor,
       actions: [
