@@ -1,12 +1,15 @@
-// ignore_for_file: deprecated_member_use
+// ignore_for_file: deprecated_member_use, prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:trackizer/core/shared/appbars/custom_appbar_text.dart';
 import 'package:trackizer/core/utils/device_utils.dart';
 import 'package:trackizer/features/home/data/models/subseription_model.dart';
 import 'package:trackizer/features/home/presentation/widgets/custom_arc_paint.dart';
 
 import '../../../../core/cofig/routes/app_router.dart';
 import '../../../../core/const/assets.dart';
+import '../../../../core/utils/tools.dart';
 import '../widgets/home_menu.dart';
 import '../widgets/list_tile_active.dart';
 
@@ -46,7 +49,14 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       floatingActionButton: const MyFloatingActionButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(60),
+        child: CustomTextAppBar(
+          title: '',
+          backgroundColor: appColor.secondaryContainer.withOpacity(0.5),
+          showLeadingIcon: false,
+        ),
+      ),
       // --- Bottom Nav Bar ---//
       bottomNavigationBar: const MyBottmAppBar(currentPage: AppRouter.home),
       // --- Body ---//
@@ -57,13 +67,14 @@ class _HomePageState extends State<HomePage> {
             child: Stack(
               children: [
                 Container(
-                  height: DeviceUtils.getScreenHeight(context) * 0.55,
+                  height: appH * 0.55,
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    color: Theme.of(
-                      context,
-                    ).colorScheme.secondaryContainer.withOpacity(0.5),
-                    borderRadius: BorderRadius.circular(20),
+                    color: appColor.secondaryContainer.withOpacity(0.5),
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(20),
+                      bottomRight: Radius.circular(20),
+                    ),
                   ),
                   child: SafeArea(
                     child: Column(
@@ -230,7 +241,9 @@ class _HomePageState extends State<HomePage> {
                 img: script.img,
                 title: script.title,
                 price: script.price,
-                onTap: () {},
+                onTap: () {
+                  context.push(AppRouter.infoSub, extra: script);
+                },
               );
             }),
           ),

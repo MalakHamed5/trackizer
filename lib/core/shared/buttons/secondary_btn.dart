@@ -25,6 +25,7 @@ class SecondaryButton extends StatelessWidget {
         decoration: BoxDecoration(
           color:  appColor.surface.withOpacity(0.3),
           borderRadius: BorderRadius.circular(30),
+          border: Border.all(color: Colors.white.withOpacity(0.1))
         ),
         child: Center(
           child: Text(

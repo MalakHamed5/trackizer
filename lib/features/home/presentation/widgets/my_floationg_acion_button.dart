@@ -26,7 +26,7 @@ class MyFloatingActionButton extends StatelessWidget {
       childrenButtonSize: const Size(56, 56),
       children: [
         //new sub
-        labelName(
+        _labelName(
           onTap: () {
             context.push(AppRouter.sub);
           },
@@ -34,13 +34,13 @@ class MyFloatingActionButton extends StatelessWidget {
           title: "Add Sub",
         ),
         //new exp
-        labelName(
+        _labelName(
           onTap: () {},
           icon: const Icon(Icons.monetization_on_rounded, color: Colors.white),
           title: "Add Exp",
         ),
         //audo
-        labelName(
+        _labelName(
           onTap: () {},
           icon: Image.asset(
             Assets.assetsIconsMic,
@@ -55,7 +55,7 @@ class MyFloatingActionButton extends StatelessWidget {
     );
   }
 
-  SpeedDialChild labelName({
+  SpeedDialChild _labelName({
     required VoidCallback onTap,
     required Widget icon,
     required String title,

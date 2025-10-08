@@ -1,14 +1,15 @@
-// ignore_for_file: deprecated_member_use
+// ignore_for_file: deprecated_member_use, prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import 'package:trackizer/core/const/app_colors.dart';
+import 'package:trackizer/core/shared/appbars/custom_appbar_text.dart';
 import 'package:trackizer/features/home/presentation/widgets/cutom_arc_180_painter.dart';
 
 import '../../../../core/cofig/routes/app_router.dart';
 import '../../../../core/const/assets.dart';
 import '../../../../core/utils/device_utils.dart';
 import '../../data/models/budget_model.dart';
-import '../widgets/appbar_text.dart';
+import '../widgets/add_button.dart';
 import '../widgets/budget_card.dart';
 import '../widgets/my_bottom_app_bar.dart';
 import '../widgets/my_floationg_acion_button.dart';
@@ -69,18 +70,21 @@ class _SpendingBugetPageState extends State<SpendingBugetPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(   floatingActionButton: const MyFloatingActionButton(),
+    return Scaffold(
+      floatingActionButton: const MyFloatingActionButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       backgroundColor: AppColors.backgroundDark,
-      bottomNavigationBar: const MyBottmAppBar(currentPage: AppRouter.spendingBuget),
+      bottomNavigationBar: const MyBottmAppBar(
+        currentPage: AppRouter.spendingBuget,
+      ),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(60),
+        child: CustomTextAppBar(title: "Spending & Budgets"),
+      ),
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
             // -- AppBar
-            const AppBarText(
-              text: "Spending & Budgets",
-              backgroundColor: Colors.transparent,
-            ),
             //--- Tracker
             SliverToBoxAdapter(
               child: Stack(
@@ -149,7 +153,10 @@ class _SpendingBugetPageState extends State<SpendingBugetPage> {
                   left: 16,
                   right: 16,
                 ),
-                padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 70),
+                padding: const EdgeInsets.symmetric(
+                  vertical: 20,
+                  horizontal: 70,
+                ),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   border: Border.all(
@@ -188,30 +195,7 @@ class _SpendingBugetPageState extends State<SpendingBugetPage> {
                   horizontal: 20,
                   vertical: 30,
                 ),
-                child: InkWell(
-                  onTap: () {},
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 80),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(
-                        color: Theme.of(context).colorScheme.secondaryContainer,
-                      ),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Add new category',
-                          style: Theme.of(context).textTheme.bodyMedium,
-                          textAlign: TextAlign.center,
-                        ),
-                        const SizedBox(width: 10),
-                        const Icon(Icons.add_circle_outline_sharp, size: 20),
-                      ],
-                    ),
-                  ),
-                ),
+                child: AddButton(title : 'Add new category'),
               ),
             ),
           ],
@@ -220,3 +204,4 @@ class _SpendingBugetPageState extends State<SpendingBugetPage> {
     );
   }
 }
+

@@ -47,7 +47,7 @@ class MyBottmAppBar extends StatelessWidget {
               Expanded(
                 child: BottomAppIcon(
                   currentPage: currentPage,
-                  navPage: AppRouter.pay,
+                  navPage: AppRouter.card,
                   icon: Icons.credit_card,
                 ),
               ),

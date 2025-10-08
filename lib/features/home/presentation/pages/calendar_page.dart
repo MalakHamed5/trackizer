@@ -1,8 +1,8 @@
-// ignore_for_file: deprecated_member_use
+// ignore_for_file: deprecated_member_use, prefer_const_constructors
 
 import 'package:calendar_agenda/calendar_agenda.dart';
 import 'package:flutter/material.dart';
-import 'package:trackizer/features/home/presentation/widgets/appbar_text.dart';
+import 'package:trackizer/core/shared/appbars/custom_appbar_text.dart';
 import 'dart:math';
 
 import '../../../../core/cofig/routes/app_router.dart';
@@ -64,17 +64,15 @@ class _CalendarPageState extends State<CalendarPage> {
       // --- Bottom Nav Bar ---//
       extendBody: true,
       bottomNavigationBar: const MyBottmAppBar(currentPage: AppRouter.calendar),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(60),
+        child: CustomTextAppBar(title: "Calender", showLeadingIcon: false),
+      ),
       // --- Body ---//
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
-            //---AppBar
-            AppBarText(
-              text: "Calender",
-              backgroundColor: Theme.of(
-                context,
-              ).colorScheme.secondaryContainer.withOpacity(0.5),
-            ),
+         
             //---Header part
             SliverToBoxAdapter(
               child: Container(
@@ -95,7 +93,7 @@ class _CalendarPageState extends State<CalendarPage> {
                     horizontal: 16.0,
                     vertical: 16,
                   ),
-                  child: Column(  
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text(

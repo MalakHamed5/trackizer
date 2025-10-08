@@ -34,6 +34,8 @@ dependencies:
   go_router: ^16.2.1
   scrollable_positioned_list: ^0.3.8
   flutter_speed_dial: ^7.0.0
+  flutter_credit_card: ^4.1.0
+  stacked_card_carousel: ^0.0.4
 #------------------./ PACKAGE END ------------------#
 dev_dependencies:
   flutter_test:

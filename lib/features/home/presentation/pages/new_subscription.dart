@@ -1,12 +1,12 @@
 // ignore_for_file: deprecated_member_use, prefer_const_constructors
 
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:trackizer/core/shared/buttons/primary_btn.dart';
+import 'package:trackizer/core/utils/loggers.dart';
 import 'package:trackizer/features/home/data/models/new_sub_model.dart';
 
 import '../../../../core/const/assets.dart';
+import '../../../../core/shared/appbars/custom_appbar_text.dart';
 import '../../../../core/utils/tools.dart';
 
 class NewSubscription extends StatefulWidget {
@@ -23,168 +23,184 @@ List<NewSubModel> sub = [
   NewSubModel(img: Assets.assetsImgOnedriveLogo, title: "OneDrive"),
 ];
 
-final _pageController = PageController(viewportFraction: 0.6, initialPage: 1);
-
 class _NewSubscriptionState extends State<NewSubscription> {
+  late final PageController _pageController;
+  final double _amounVal = 0.06;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController(viewportFraction: 0.6, initialPage: 1);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _pageController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       // --- AppBar ---//
-      appBar: AppBar(
-        centerTitle: true,
-        automaticallyImplyLeading: false,
-        title: Text(
-          'New',
-          style: TextStyle(color: appColor.onTertiary, fontSize: 20),
-        ),
-        backgroundColor: appColor.secondaryContainer.withOpacity(0.5),
-        leading: IconButton(
-          onPressed: () {
-            context.pop();
-          },
-          icon: Icon(
-            Icons.arrow_back_ios_new_rounded,
-            color: appColor.tertiaryContainer,
-          ),
-        ),
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(60),
+        child: CustomTextAppBar(title: 'New'),
       ),
       // --- Body ---//
       body: SafeArea(
-        child: Column(
-          children: [
-            //--- First part
-            Container(
-              height: appH * 0.42,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: appColor.secondaryContainer.withOpacity(0.5),
-                borderRadius: const BorderRadius.only(
-                  bottomLeft: Radius.circular(20),
-                  bottomRight: Radius.circular(20),
-                ),
-              ),
-              child: Column(
-                children: [
-                  const SizedBox(height: 10),
-                  Text(
-                    'Add new\nsubscription',
-                    style: TextStyle(
-                      fontSize: 36,
-                      color: appColor.onPrimary,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    textAlign: TextAlign.center,
+        child: CustomScrollView(
+          slivers: [
+            //--- Add new sub
+            SliverToBoxAdapter(
+              child: Container(
+                height: appH * 0.42,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: appColor.secondaryContainer.withOpacity(0.5),
+                  borderRadius: const BorderRadius.only(
+                    bottomLeft: Radius.circular(20),
+                    bottomRight: Radius.circular(20),
                   ),
-                  const SizedBox(height: 40),
-                  Expanded(
-                    child: PageView.builder(
-                      padEnds: true,
-                      controller: _pageController,
-                      scrollDirection: Axis.horizontal,
-                      physics: const BouncingScrollPhysics(),
-                      itemCount: sub.length,
-                      itemBuilder: (context, i) {
-                        return AnimatedBuilder(
-                          animation: _pageController,
-                          builder: (context, child) {
-                            double scale = 1.0;
-                            if (_pageController.hasClients &&
-                                _pageController.position.hasContentDimensions) {
-                              final page =
-                                  _pageController.page ??
-                                  _pageController.initialPage.toDouble();
-                              final distance = (page - i).abs();
-                              scale = (1 - distance * 0.15).clamp(0.90, 1.0);
-                              debugPrint(
-                                "Current Page: ${_pageController.page}",
+                ),
+                child: Column(
+                  children: [
+                    const SizedBox(height: 10),
+                    Text(
+                      'Add new\nsubscription',
+                      style: TextStyle(
+                        fontSize: 36,
+                        color: appColor.onPrimary,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 40),
+                    Expanded(
+                      child: PageView.builder(
+                        padEnds: true,
+                        controller: _pageController,
+                        scrollDirection: Axis.horizontal,
+                        physics: const BouncingScrollPhysics(),
+                        itemCount: sub.length,
+                        itemBuilder: (context, i) {
+                          return AnimatedBuilder(
+                            animation: _pageController,
+                            builder: (context, child) {
+                              double scale = 1.0;
+                              if (_pageController.hasClients &&
+                                  _pageController
+                                      .position
+                                      .hasContentDimensions) {
+                                final page =
+                                    _pageController.page ??
+                                    _pageController.initialPage.toDouble();
+                                final distance = (page - i).abs();
+                                scale = (1 - distance * 0.15).clamp(0.90, 1.0);
+                                AppLogger.log(
+                                  "Current Page: ${_pageController.page}",
+                                );
+                              }
+                              return Transform.scale(
+                                scale: scale,
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 6.0,
+                                  ),
+                                  child: _AddSubCard(
+                                    title: sub[i].title,
+                                    img: sub[i].img,
+                                  ),
+                                ),
                               );
-                            }
-                            return Transform.scale(
-                              scale: scale,
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 6.0,
-                                ),
-                                child: AddSubCard(
-                                  title: sub[i].title,
-                                  img: sub[i].img,
-                                ),
-                              ),
-                            );
-                          },
-                        );
-                      },
+                            },
+                          );
+                        },
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-            const SizedBox(height: 20),
-            //--- Second Part
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12.0),
-              child: Text(
-                'Description',
-                style: TextStyle(color: appColor.onSecondary),
+            SliverToBoxAdapter(child: sizeH(20)),
+            //--- Description txt
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                child: Text(
+                  'Description',
+                  style: TextStyle(color: appColor.onSecondary),
+                ),
               ),
             ),
-            // --- TextFromFeild
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12.0),
-              child: TextFormField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20),
-                    borderSide: BorderSide(
-                      color: appColor.secondaryContainer.withOpacity(0.7),
-                      width: 2,
+            //---Description feild
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                child: TextFormField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
                     ),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20),
-                    borderSide: BorderSide(color: appColor.tertiary),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                      borderSide: BorderSide(
+                        color: appColor.secondaryContainer.withOpacity(0.7),
+                        width: 2,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                      borderSide: BorderSide(color: appColor.tertiary),
+                    ),
                   ),
                 ),
               ),
             ),
-            const SizedBox(height: 60),
-            // ---Buttons
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12.0),
-              child: Center(
+            SliverToBoxAdapter(child: sizeH(60)),
+            //---Price
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12.0),
                 child: Row(
                   children: [
-                    actionButton(icon: Icons.remove),
+                    _ActionButton(icon: Icons.remove),
                     Spacer(),
                     Column(
                       children: [
                         Text("Monthly price "),
                         Text(
-                          '\$3.99',
+                          '\$${_amounVal.toStringAsFixed(2)}',
                           style: TextStyle(
                             fontSize: 26,
                             color: appColor.onPrimary,
                           ),
                         ),
-                        Divider(color: Colors.yellow, thickness: 2),
+                        SizedBox(height: 8),
+                        Container(
+                          width: 150,
+                          height: 1,
+                          color: appColor.secondaryContainer.withOpacity(0.7),
+                        ),
                       ],
                     ),
-                 
+
                     const Spacer(),
-                    actionButton(icon: Icons.add),
+                    _ActionButton(icon: Icons.add),
                   ],
                 ),
               ),
             ),
-            const Spacer(),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12.0),
-              child: PrimaryButton(onPressed: () {}, txt: "Add this platform"),
+           SliverToBoxAdapter(child: sizeH(100),),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                child: PrimaryButton(
+                  onPressed: () {},
+                  txt: "Add this platform",
+                ),
+              ),
             ),
-           SizedBox(height: 20,),
           ],
         ),
       ),
@@ -192,8 +208,8 @@ class _NewSubscriptionState extends State<NewSubscription> {
   }
 }
 
-class actionButton extends StatelessWidget {
-  const actionButton({super.key, required this.icon});
+class _ActionButton extends StatelessWidget {
+  const _ActionButton({super.key, required this.icon});
   final IconData icon;
 
   @override
@@ -203,7 +219,7 @@ class actionButton extends StatelessWidget {
         backgroundColor: appColor.secondaryContainer.withOpacity(0.5),
         foregroundColor: appColor.tertiaryContainer,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        padding: EdgeInsetsGeometry.all(15),
+        padding: EdgeInsets.all(15),
         elevation: 6,
       ),
       onPressed: () {},
@@ -212,8 +228,8 @@ class actionButton extends StatelessWidget {
   }
 }
 
-class AddSubCard extends StatelessWidget {
-  const AddSubCard({super.key, required this.title, required this.img});
+class _AddSubCard extends StatelessWidget {
+  const _AddSubCard({super.key, required this.title, required this.img});
 
   final String title;
   final String img;
