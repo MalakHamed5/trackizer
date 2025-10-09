@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:trackizer/features/home/data/models/user_model.dart';
 
-import '../../cofig/routes/app_router.dart';
+import '../../config/routes/app_router.dart';
 import '../../const/assets.dart';
 import '../../utils/tools.dart';
 

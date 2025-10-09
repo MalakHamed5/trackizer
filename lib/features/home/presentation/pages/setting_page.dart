@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:trackizer/core/shared/appbars/custom_appbar_text.dart';
 import 'package:trackizer/features/home/data/models/user_model.dart';
 
-import '../../../../core/cofig/theme/app_typography.dart'
+import '../../../../core/config/theme/app_typography.dart'
     show AppText, TextRole;
+import '../../../../core/const/app_sizes.dart';
 import '../../../../core/const/assets.dart';
 import '../../../../core/utils/tools.dart' show appColor;
 
@@ -178,22 +179,21 @@ class SettingSectionCard extends StatelessWidget {
     return Column(
       children: [
         Padding(
-                padding: const EdgeInsets.fromLTRB(16, 14, 16, 6),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: AppText(title, role: TextRole.body),
-                ),
-              ),
+          padding: const EdgeInsets.fromLTRB(16, 14, 16, 6),
+          child: Align(
+            alignment: Alignment.centerLeft,
+            child: AppText(title, role: TextRole.body),
+          ),
+        ),
         Container(
           decoration: BoxDecoration(
             color: appColor.secondaryContainer.withOpacity(0.7),
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(color: Colors.white.withOpacity(0.1)),
+            borderRadius: AppSizes.brL,
+            border: Border.all(color: appColor.onPrimary.withOpacity(0.1)),
           ),
           padding: EdgeInsets.fromLTRB(20, 10, 0, 20),
           child: Column(
             children: [
-          
               ...List.generate(tils.length, (i) {
                 final t = tils[i];
                 final isLast = i == tils.length - 1;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/utils/device_utils.dart';
+import '../../../../core/utils/tools.dart';
 
 class StatusCard extends StatelessWidget {
   const StatusCard({
@@ -18,20 +18,18 @@ class StatusCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = DeviceUtils.getScreenWidth(context);
+    final screenWidth = appW;
     return InkWell(
       onTap: onTap,
       child: Card(
         clipBehavior: Clip.antiAlias,
         elevation: 4,
-        shadowColor: Theme.of(context).colorScheme.secondary.withOpacity(0.15),
+        shadowColor: appColor.secondary.withOpacity(0.15),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(18),
-          side: BorderSide(
-            color: Theme.of(context).colorScheme.primaryContainer,
-          ),
+          side: BorderSide(color: appColor.primaryContainer),
         ),
-        color: Theme.of(context).colorScheme.secondaryContainer,
+        color: appColor.secondaryContainer,
         child: Column(
           children: [
             // --- colored line
@@ -49,7 +47,7 @@ class StatusCard extends StatelessWidget {
                     title,
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      color: Theme.of(context).colorScheme.onTertiary,
+                      color: appColor.onTertiary,
                       fontWeight: FontWeight.w700,
                       letterSpacing: 0.6,
                       fontSize: screenWidth * 0.032,
@@ -62,7 +60,7 @@ class StatusCard extends StatelessWidget {
                     style: TextStyle(
                       fontWeight: FontWeight.w800,
                       fontSize: screenWidth * 0.05,
-                      color: Theme.of(context).colorScheme.onPrimary,
+                      color: appColor.onPrimary,
                     ),
                   ),
                 ],

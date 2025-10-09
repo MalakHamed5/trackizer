@@ -3,12 +3,13 @@
 import 'package:calendar_agenda/calendar_agenda.dart';
 import 'package:flutter/material.dart';
 import 'package:trackizer/core/shared/appbars/custom_appbar_text.dart';
+import 'package:trackizer/core/utils/tools.dart';
 import 'dart:math';
 
-import '../../../../core/cofig/routes/app_router.dart';
+import '../../../../core/config/routes/app_router.dart';
 import '../../../../core/const/app_colors.dart';
+import '../../../../core/const/app_sizes.dart';
 import '../../../../core/const/assets.dart';
-import '../../../../core/utils/device_utils.dart';
 import '../../data/models/subseription_model.dart';
 import '../widgets/my_bottom_app_bar.dart';
 import '../widgets/my_floationg_acion_button.dart';
@@ -23,12 +24,10 @@ class CalendarPage extends StatefulWidget {
 class _CalendarPageState extends State<CalendarPage> {
   CalendarAgendaController calendarAgendaControllerNotAppBar =
       CalendarAgendaController();
-  CalendarAgendaController calendarAgendaControllerAppBar =
-      CalendarAgendaController();
 
   late DateTime selectedDateNotAppBBar;
-  late DateTime selectedDateAppBBar;
-  Random random = new Random();
+
+  Random random = Random();
 
   //--- Data
   List<SubscriptionModel> scription = [
@@ -52,8 +51,14 @@ class _CalendarPageState extends State<CalendarPage> {
   @override
   void initState() {
     super.initState();
-    selectedDateAppBBar = DateTime.now();
+
     selectedDateNotAppBBar = DateTime.now();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    calendarAgendaControllerNotAppBar.dispose();
   }
 
   @override
@@ -66,25 +71,26 @@ class _CalendarPageState extends State<CalendarPage> {
       bottomNavigationBar: const MyBottmAppBar(currentPage: AppRouter.calendar),
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(60),
-        child: CustomTextAppBar(title: "Calender", showLeadingIcon: false),
+        child: CustomTextAppBar(
+          title: "Calender",
+          showLeadingIcon: false,
+          backgroundColor: appColor.secondaryContainer.withOpacity(0.5),
+        ),
       ),
       // --- Body ---//
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
-         
             //---Header part
             SliverToBoxAdapter(
               child: Container(
-                height: DeviceUtils.getScreenHeight(context) * 0.35,
+                height: appH * 0.35,
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  color: Theme.of(
-                    context,
-                  ).colorScheme.secondaryContainer.withOpacity(0.5),
+                  color: appColor.secondaryContainer.withOpacity(0.5),
                   borderRadius: const BorderRadius.only(
-                    bottomLeft: Radius.circular(20),
-                    bottomRight: Radius.circular(20),
+                    bottomLeft: AppSizes.rL,
+                    bottomRight: AppSizes.rL,
                   ),
                 ),
 
@@ -96,15 +102,15 @@ class _CalendarPageState extends State<CalendarPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
+                      Text(
                         "Subs\nSchedule",
                         style: TextStyle(
                           fontSize: 40,
                           fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                          color: appColor.onPrimary,
                         ),
                       ),
-                      const SizedBox(height: 10),
+                      sizeH(10),
                       //---Month button
                       Row(
                         children: [
@@ -117,33 +123,26 @@ class _CalendarPageState extends State<CalendarPage> {
                                 horizontal: 10,
                               ),
                               decoration: BoxDecoration(
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .tertiaryContainer
-                                    .withOpacity(0.25),
-                                borderRadius: BorderRadius.circular(20),
+                                color: appColor.tertiaryContainer.withOpacity(
+                                  0.25,
+                                ),
+                                borderRadius: AppSizes.brL,
                                 border: Border.all(
-                                  color: Colors.white.withOpacity(0.1),
+                                  color: appColor.onPrimary.withOpacity(0.1),
                                 ),
                               ),
-                              child: InkWell(
-                                onTap: () {
-                                  calendarAgendaControllerNotAppBar
-                                      .openCalender();
-                                },
-                                child: const Row(
-                                  children: [
-                                    Text(
-                                      'January',
-                                      style: TextStyle(color: Colors.white),
-                                    ),
-                                    Icon(
-                                      Icons.keyboard_arrow_down,
-                                      color: Colors.white,
-                                      size: 14,
-                                    ),
-                                  ],
-                                ),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    'January',
+                                    style: TextStyle(color: appColor.onPrimary),
+                                  ),
+                                  Icon(
+                                    Icons.keyboard_arrow_down,
+                                    color: appColor.onPrimary,
+                                    size: 14,
+                                  ),
+                                ],
                               ),
                             ),
                           ),
@@ -158,30 +157,26 @@ class _CalendarPageState extends State<CalendarPage> {
                         backgroundColor: Colors.transparent,
                         fullCalenderBackground: AppColors.backgroundDark,
                         decoration: BoxDecoration(
-                          color: Theme.of(
-                            context,
-                          ).colorScheme.secondaryContainer.withOpacity(0.7),
-                          borderRadius: BorderRadius.circular(16),
+                          color: appColor.secondaryContainer.withOpacity(0.7),
+                          borderRadius: AppSizes.brM,
                           border: Border.all(
-                            color: Colors.white.withOpacity(0.1),
+                            color: appColor.onPrimary.withOpacity(0.1),
                           ),
                         ),
                         selectedDecoration: BoxDecoration(
-                          color: Theme.of(
-                            context,
-                          ).colorScheme.tertiaryContainer.withOpacity(0.4),
-                          borderRadius: BorderRadius.circular(16),
+                          color: appColor.tertiaryContainer.withOpacity(0.4),
+                          borderRadius: AppSizes.brM,
                           border: Border.all(
-                            color: Colors.white.withOpacity(0.1),
+                            color: appColor.onPrimary.withOpacity(0.1),
                           ),
                         ),
-                        selectedDateColor: Colors.white,
+                        selectedDateColor: appColor.onPrimary,
                         eventLogo: Container(
                           height: 5,
                           width: 5,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: Theme.of(context).colorScheme.secondary,
+                            color: appColor.secondary,
                           ),
                         ),
                         locale: 'en',
@@ -209,11 +204,11 @@ class _CalendarPageState extends State<CalendarPage> {
                 ),
               ),
             ),
-            const SliverToBoxAdapter(child: SizedBox(height: 20)),
+            SliverToBoxAdapter(child: sizeH(20)),
             //--- First Txt
-            const SliverToBoxAdapter(
+            SliverToBoxAdapter(
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8),
+                padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -222,7 +217,7 @@ class _CalendarPageState extends State<CalendarPage> {
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
-                        color: Colors.white,
+                        color: appColor.onPrimary,
                       ),
                     ),
                     Text(
@@ -230,7 +225,7 @@ class _CalendarPageState extends State<CalendarPage> {
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
-                        color: Colors.white,
+                        color: appColor.onPrimary,
                       ),
                     ),
                   ],
@@ -249,7 +244,7 @@ class _CalendarPageState extends State<CalendarPage> {
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 12,
-                        color: Theme.of(context).colorScheme.onTertiary,
+                        color: appColor.onTertiary,
                       ),
                     ),
                     Text(
@@ -257,7 +252,7 @@ class _CalendarPageState extends State<CalendarPage> {
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 12,
-                        color: Theme.of(context).colorScheme.onTertiary,
+                        color: appColor.onTertiary,
                       ),
                     ),
                   ],
@@ -276,11 +271,11 @@ class _CalendarPageState extends State<CalendarPage> {
                   ),
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Theme.of(
-                        context,
-                      ).colorScheme.secondaryContainer.withOpacity(0.7),
-                      borderRadius: BorderRadius.circular(16),
-                      border: Border.all(color: Colors.white.withOpacity(0.1)),
+                      color: appColor.secondaryContainer.withOpacity(0.7),
+                      borderRadius: AppSizes.brM,
+                      border: Border.all(
+                        color: appColor.onPrimary.withOpacity(0.1),
+                      ),
                     ),
                     height: 50,
                     width: 50,
@@ -293,16 +288,16 @@ class _CalendarPageState extends State<CalendarPage> {
                         const Spacer(),
                         Text(
                           script.title,
-                          style: const TextStyle(
-                            color: Colors.white,
+                          style: TextStyle(
+                            color: appColor.onPrimary,
                             fontSize: 14,
                             fontWeight: FontWeight.w400,
                           ),
                         ),
                         Text(
                           script.price,
-                          style: const TextStyle(
-                            color: Colors.white,
+                          style: TextStyle(
+                            color: appColor.onPrimary,
                             fontSize: 20,
                           ),
                         ),
@@ -317,7 +312,6 @@ class _CalendarPageState extends State<CalendarPage> {
                 mainAxisSpacing: 1,
               ),
             ),
-
             SliverToBoxAdapter(
               child: Container(
                 decoration: const BoxDecoration(

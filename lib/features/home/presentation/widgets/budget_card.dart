@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/const/app_colors.dart';
+import '../../../../core/utils/tools.dart';
 
 class BudgetCard extends StatelessWidget {
   const BudgetCard({
@@ -27,7 +28,7 @@ class BudgetCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20 , vertical: 4),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
       child: InkWell(
         onTap: onTap,
         child: Container(
@@ -46,7 +47,7 @@ class BudgetCard extends StatelessWidget {
                     img,
                     height: 40,
                     width: 40,
-                    color: Theme.of(context).colorScheme.tertiaryContainer,
+                    color: appColor.tertiaryContainer,
                   ),
                   const SizedBox(width: 18),
                   Expanded(

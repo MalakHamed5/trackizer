@@ -5,6 +5,7 @@ import 'package:trackizer/core/shared/buttons/primary_btn.dart';
 import 'package:trackizer/core/utils/loggers.dart';
 import 'package:trackizer/features/home/data/models/new_sub_model.dart';
 
+import '../../../../core/const/app_sizes.dart';
 import '../../../../core/const/assets.dart';
 import '../../../../core/shared/appbars/custom_appbar_text.dart';
 import '../../../../core/utils/tools.dart';
@@ -139,18 +140,16 @@ class _NewSubscriptionState extends State<NewSubscription> {
                 padding: const EdgeInsets.symmetric(horizontal: 12.0),
                 child: TextFormField(
                   decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
+                    border: OutlineInputBorder(borderRadius: AppSizes.brL),
                     enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: AppSizes.brL,
                       borderSide: BorderSide(
                         color: appColor.secondaryContainer.withOpacity(0.7),
                         width: 2,
                       ),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: AppSizes.brL,
                       borderSide: BorderSide(color: appColor.tertiary),
                     ),
                   ),
@@ -191,7 +190,7 @@ class _NewSubscriptionState extends State<NewSubscription> {
                 ),
               ),
             ),
-           SliverToBoxAdapter(child: sizeH(100),),
+            SliverToBoxAdapter(child: sizeH(100)),
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 12.0),
@@ -218,7 +217,7 @@ class _ActionButton extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         backgroundColor: appColor.secondaryContainer.withOpacity(0.5),
         foregroundColor: appColor.tertiaryContainer,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        shape: RoundedRectangleBorder(borderRadius: AppSizes.brL),
         padding: EdgeInsets.all(15),
         elevation: 6,
       ),

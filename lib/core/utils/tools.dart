@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../cofig/routes/app_router.dart';
+import '../config/routes/app_router.dart';
 import 'device_utils.dart';
 
 //--- Context ---//

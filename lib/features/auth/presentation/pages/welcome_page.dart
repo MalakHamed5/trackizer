@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:trackizer/core/shared/buttons/secondary_btn.dart';
 
-import '../../../../core/cofig/routes/app_router.dart';
+import '../../../../core/config/routes/app_router.dart';
 import '../../../../core/const/assets.dart';
 import '../../../../core/utils/tools.dart';
 import '../widgets/auth_header.dart';

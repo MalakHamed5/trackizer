@@ -65,9 +65,9 @@ print(date);
 | selectedDayLogo  | ImageProvider\<Object>?  | False  | |
 | controller  | CalendarAgendaController?  | False  | |
 | selectedDateColor  | Color?  | False  | Colors.black |
-| dateColor  | Color?  | False  | Colors.white |
-| calendarBackground  | Color?  | False  |Colors.white |
-| calendarEventSelectedColor  | Color?  | False  | Colors.white |
+| dateColor  | Color?  | False  | appColor.onPrimary |
+| calendarBackground  | Color?  | False  |appColor.onPrimary |
+| calendarEventSelectedColor  | Color?  | False  | appColor.onPrimary |
 | calendarEventColor  | Color?  | False  | Colors.blue |
 | locale  | String?  | False  | 'en' |
 | leading  | Widget?  | False  | |

@@ -3,9 +3,11 @@
 import 'package:flutter/material.dart';
 import 'package:trackizer/core/const/app_colors.dart';
 import 'package:trackizer/core/shared/appbars/custom_appbar_text.dart';
+import 'package:trackizer/core/utils/tools.dart';
 import 'package:trackizer/features/home/presentation/widgets/cutom_arc_180_painter.dart';
 
-import '../../../../core/cofig/routes/app_router.dart';
+import '../../../../core/config/routes/app_router.dart';
+import '../../../../core/const/app_sizes.dart';
 import '../../../../core/const/assets.dart';
 import '../../../../core/utils/device_utils.dart';
 import '../../data/models/budget_model.dart';
@@ -45,27 +47,6 @@ class _SpendingBugetPageState extends State<SpendingBugetPage> {
       total: 600,
       color: AppColors.primary10,
     ),
-    BudgetModel(
-      title: "Auto & Transport",
-      img: Assets.assetsImgAutoTransport,
-      spent: 304,
-      total: 400,
-      color: AppColors.secondaryG,
-    ),
-    BudgetModel(
-      title: "Entertainment",
-      img: Assets.assetsImgEntertainment,
-      spent: 50.99,
-      total: 600,
-      color: AppColors.secondary,
-    ),
-    BudgetModel(
-      title: "Security",
-      img: Assets.assetsImgSecurity,
-      spent: 5.99,
-      total: 600,
-      color: AppColors.primary10,
-    ),
   ];
 
   @override
@@ -79,19 +60,21 @@ class _SpendingBugetPageState extends State<SpendingBugetPage> {
       ),
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(60),
-        child: CustomTextAppBar(title: "Spending & Budgets"),
+        child: CustomTextAppBar(
+          title: "Spending & Budgets",
+          showLeadingIcon: false,
+        ),
       ),
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
-            // -- AppBar
             //--- Tracker
             SliverToBoxAdapter(
               child: Stack(
                 children: [
                   Center(
                     child: SizedBox(
-                      height: DeviceUtils.getScreenHeight(context) * 0.15,
+                      height: appH * 0.15,
                       width: DeviceUtils.getScreenWidth(context) * 0.5,
                       child: CustomPaint(
                         painter: CustomArc180Paint(
@@ -119,7 +102,7 @@ class _SpendingBugetPageState extends State<SpendingBugetPage> {
                             Text(
                               "\$8.099",
                               style: TextStyle(
-                                color: Theme.of(context).colorScheme.onPrimary,
+                                color: appColor.onPrimary,
                                 fontSize:
                                     DeviceUtils.getScreenWidth(context) * 0.08,
                                 fontWeight: FontWeight.w800,
@@ -129,9 +112,7 @@ class _SpendingBugetPageState extends State<SpendingBugetPage> {
                               child: Text(
                                 "of \$4000 budget",
                                 style: TextStyle(
-                                  color: Theme.of(
-                                    context,
-                                  ).colorScheme.onTertiary,
+                                  color: appColor.onTertiary,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -158,7 +139,7 @@ class _SpendingBugetPageState extends State<SpendingBugetPage> {
                   horizontal: 70,
                 ),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: AppSizes.brL,
                   border: Border.all(
                     color: Theme.of(
                       context,
@@ -195,7 +176,7 @@ class _SpendingBugetPageState extends State<SpendingBugetPage> {
                   horizontal: 20,
                   vertical: 30,
                 ),
-                child: AddButton(title : 'Add new category'),
+                child: AddButton(title: 'Add new category'),
               ),
             ),
           ],
@@ -204,4 +185,3 @@ class _SpendingBugetPageState extends State<SpendingBugetPage> {
     );
   }
 }
-

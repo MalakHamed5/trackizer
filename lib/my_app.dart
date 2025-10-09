@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:trackizer/core/cofig/routes/app_router.dart';
-import 'package:trackizer/core/cofig/theme/get_dark_theme.dart';
+import 'package:trackizer/core/config/routes/app_router.dart';
+import 'package:trackizer/core/config/theme/get_dark_theme.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

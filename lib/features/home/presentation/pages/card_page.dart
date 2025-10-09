@@ -1,13 +1,12 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unused_element_parameter
 
 import 'package:flutter/material.dart';
-import 'package:flutter_credit_card/flutter_credit_card.dart';
-import 'package:trackizer/core/cofig/theme/app_typography.dart';
+import 'package:trackizer/core/config/theme/app_typography.dart';
 import 'package:trackizer/core/shared/appbars/custom_appbar_text.dart';
 import 'package:trackizer/features/home/presentation/widgets/add_button.dart';
 import 'package:trackizer/features/home/presentation/widgets/my_floationg_acion_button.dart';
 
-import '../../../../core/cofig/routes/app_router.dart';
+import '../../../../core/config/routes/app_router.dart';
 import '../../../../core/const/assets.dart';
 import '../../../../core/utils/tools.dart';
 import '../widgets/my_bottom_app_bar.dart';

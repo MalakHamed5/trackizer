@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/cofig/routes/app_router.dart';
+import '../../../../core/config/routes/app_router.dart';
 import '../../../../core/const/app_colors.dart';
+import '../../../../core/utils/tools.dart';
 
 class MyBottmAppBar extends StatelessWidget {
   const MyBottmAppBar({super.key, required this.currentPage});
@@ -18,7 +19,7 @@ class MyBottmAppBar extends StatelessWidget {
         borderRadius: BorderRadiusGeometry.circular(20),
         child: BottomAppBar(
           notchMargin: 8,
-          color: Theme.of(context).colorScheme.secondaryContainer,
+          color: appColor.secondaryContainer,
           shape: InsetCircularNotchedRectangle(inset: hpad),
           child: Row(
             children: [
@@ -79,7 +80,7 @@ class BottomAppIcon extends StatelessWidget {
       },
       icon: Icon(
         icon,
-        color: currentPage == navPage ? Colors.white : AppColors.gray50,
+        color: currentPage == navPage ? appColor.onPrimary : AppColors.gray50,
       ),
     );
   }

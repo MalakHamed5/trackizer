@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/const/app_sizes.dart';
 import '../../../../core/utils/device_utils.dart';
+import '../../../../core/utils/tools.dart';
 
 class HomeMenu extends StatelessWidget {
   const HomeMenu({super.key, required this.title, required this.onPressed});
@@ -13,27 +15,24 @@ class HomeMenu extends StatelessWidget {
       child: Container(
         // around the text
         padding: EdgeInsets.symmetric(
-          horizontal: DeviceUtils.getScreenWidth(context) * 0.03,
-          vertical: DeviceUtils.getScreenWidth(context) * 0.025,
+          horizontal: appW * 0.03,
+          vertical: appW * 0.025,
         ),
         // around the gray container
         margin: EdgeInsets.symmetric(
-          horizontal: DeviceUtils.getScreenWidth(context) * 0.03,
-          vertical: DeviceUtils.getScreenWidth(context) * 0.02,
+          horizontal: appW * 0.03,
+          vertical: appW * 0.02,
         ),
         decoration: BoxDecoration(
           color: Theme.of(
             context,
           ).colorScheme.secondaryContainer.withOpacity(0.4),
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: AppSizes.brL,
         ),
         child: Text(
           title,
           textAlign: TextAlign.center,
-          style: TextStyle(
-            color: Theme.of(context).colorScheme.onPrimary,
-            fontSize: DeviceUtils.getScreenWidth(context) * 0.035,
-          ),
+          style: TextStyle(color: appColor.onPrimary, fontSize: appW * 0.035),
         ),
       ),
     );

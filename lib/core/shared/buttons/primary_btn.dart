@@ -29,13 +29,13 @@ class PrimaryButton extends StatelessWidget {
               offset: const Offset(0, 7),
             ),
           ],
-          color: Theme.of(context).colorScheme.secondary,
+          color: appColor.secondary,
           borderRadius: BorderRadius.circular(30),
         ),
         child: Center(
           child: Text(
             txt,
-            style:  TextStyle(
+            style: TextStyle(
               color: appColor.onPrimary,
               fontSize: 16,
               fontWeight: FontWeight.bold,
@@ -47,4 +47,3 @@ class PrimaryButton extends StatelessWidget {
     );
   }
 }
-

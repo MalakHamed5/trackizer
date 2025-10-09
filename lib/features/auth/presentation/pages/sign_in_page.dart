@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:trackizer/core/cofig/routes/app_router.dart';
+import 'package:trackizer/core/config/routes/app_router.dart';
 import 'package:trackizer/core/utils/device_utils.dart';
 import 'package:trackizer/features/auth/presentation/widgets/auth_header.dart';
 import 'package:trackizer/features/auth/presentation/widgets/auth_text_field.dart';
 import 'package:trackizer/core/shared/buttons/primary_btn.dart';
 import 'package:trackizer/core/shared/buttons/secondary_btn.dart';
 
+import '../../../../core/utils/tools.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
@@ -30,7 +31,7 @@ class _SignInPageState extends State<SignInPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const AuthHeader(),
-              SizedBox(height: DeviceUtils.getScreenHeight(context) * 0.25),
+              SizedBox(height: appH * 0.25),
               AuthTextField(name: 'Login', controller: emailController),
               const SizedBox(height: 10),
               AuthTextField(name: "Password", controller: passController),
@@ -41,24 +42,18 @@ class _SignInPageState extends State<SignInPage> {
                     value: false,
                     onChanged: (val) {},
                     checkColor: Colors.blue,
-                    side: BorderSide(
-                      color: Theme.of(context).colorScheme.primaryContainer,
-                    ),
+                    side: BorderSide(color: appColor.primaryContainer),
                   ),
                   Text(
                     "Remember me",
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.onSecondary,
-                    ),
+                    style: TextStyle(color: appColor.onSecondary),
                   ),
                   const Spacer(),
                   TextButton(
                     onPressed: () {},
                     child: Text(
                       "Forgot Password?",
-                      style: TextStyle(
-                        color: Theme.of(context).colorScheme.onSecondary,
-                      ),
+                      style: TextStyle(color: appColor.onSecondary),
                     ),
                   ),
                 ],
@@ -75,9 +70,7 @@ class _SignInPageState extends State<SignInPage> {
                 alignment: Alignment.center,
                 child: Text(
                   "if you have an account? Sign up",
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.onPrimary,
-                  ),
+                  style: TextStyle(color: appColor.onPrimary),
                 ),
               ),
               const SizedBox(height: 10),

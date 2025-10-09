@@ -7,7 +7,8 @@ import 'package:trackizer/core/utils/device_utils.dart';
 import 'package:trackizer/features/home/data/models/subseription_model.dart';
 import 'package:trackizer/features/home/presentation/widgets/custom_arc_paint.dart';
 
-import '../../../../core/cofig/routes/app_router.dart';
+import '../../../../core/config/routes/app_router.dart';
+import '../../../../core/const/app_sizes.dart';
 import '../../../../core/const/assets.dart';
 import '../../../../core/utils/tools.dart';
 import '../widgets/home_menu.dart';
@@ -57,7 +58,6 @@ class _HomePageState extends State<HomePage> {
           showLeadingIcon: false,
         ),
       ),
-      // --- Bottom Nav Bar ---//
       bottomNavigationBar: const MyBottmAppBar(currentPage: AppRouter.home),
       // --- Body ---//
       body: CustomScrollView(
@@ -67,7 +67,7 @@ class _HomePageState extends State<HomePage> {
             child: Stack(
               children: [
                 Container(
-                  height: appH * 0.55,
+                  height: appH * 0.5,
                   width: double.infinity,
                   decoration: BoxDecoration(
                     color: appColor.secondaryContainer.withOpacity(0.5),
@@ -130,21 +130,17 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 80),
+                        sizeH(80),
                         //See your budget button
                         InkWell(
                           onTap: () {},
                           child: Container(
                             padding: const EdgeInsets.all(11.0),
                             decoration: BoxDecoration(
-                              color: Theme.of(
-                                context,
-                              ).colorScheme.primaryContainer,
-                              borderRadius: BorderRadius.circular(20),
+                              color: appColor.primaryContainer,
+                              borderRadius: AppSizes.brL,
                               border: Border.all(
-                                color: Theme.of(
-                                  context,
-                                ).colorScheme.secondaryContainer,
+                                color: appColor.secondaryContainer,
                                 width: 1.5,
                               ),
                             ),
@@ -152,12 +148,12 @@ class _HomePageState extends State<HomePage> {
                               "see your budget",
                               style: TextStyle(
                                 fontSize: 18,
-                                color: Theme.of(context).colorScheme.onPrimary,
+                                color: appColor.onPrimary,
                               ),
                             ),
                           ),
                         ),
-                        const Spacer(),
+                        sizeH(20),
                         //Status buttons
                         Container(
                           padding: const EdgeInsets.only(
@@ -170,7 +166,7 @@ class _HomePageState extends State<HomePage> {
                             children: [
                               Expanded(
                                 child: StatusCard(
-                                  color: Theme.of(context).colorScheme.primary,
+                                  color: appColor.primary,
                                   title: 'Active subs',
                                   count: '12',
                                   onTap: () {},
@@ -178,9 +174,7 @@ class _HomePageState extends State<HomePage> {
                               ),
                               Expanded(
                                 child: StatusCard(
-                                  color: Theme.of(
-                                    context,
-                                  ).colorScheme.secondary,
+                                  color: appColor.secondary,
                                   title: 'Highest subs',
                                   count: '\$19.99',
                                   onTap: () {},
@@ -188,7 +182,7 @@ class _HomePageState extends State<HomePage> {
                               ),
                               Expanded(
                                 child: StatusCard(
-                                  color: Theme.of(context).colorScheme.tertiary,
+                                  color: appColor.tertiary,
                                   title: 'Lowest subs',
                                   count: '\$4.99',
                                   onTap: () {},
@@ -208,12 +202,12 @@ class _HomePageState extends State<HomePage> {
           SliverToBoxAdapter(
             child: Container(
               margin: EdgeInsets.symmetric(
-                horizontal: DeviceUtils.getScreenWidth(context) * 0.04,
-                vertical: DeviceUtils.getScreenWidth(context) * 0.04,
+                horizontal: appW * 0.04,
+                vertical: appW * 0.04,
               ),
               decoration: BoxDecoration(
                 color: Colors.black,
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: AppSizes.brL,
               ),
               child: Row(
                 children: [

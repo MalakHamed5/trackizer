@@ -5,7 +5,7 @@ import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:go_router/go_router.dart';
 import 'package:trackizer/core/utils/tools.dart';
 
-import '../../../../core/cofig/routes/app_router.dart';
+import '../../../../core/config/routes/app_router.dart';
 import '../../../../core/const/app_colors.dart';
 import '../../../../core/const/assets.dart';
 
@@ -18,7 +18,7 @@ class MyFloatingActionButton extends StatelessWidget {
       key: UniqueKey(),
       icon: Icons.add_rounded,
       activeIcon: Icons.close_rounded,
-      backgroundColor: Theme.of(context).colorScheme.secondary,
+      backgroundColor: appColor.secondary,
       curve: Curves.easeInOut,
       overlayColor: Colors.black,
       overlayOpacity: 0.7,
@@ -30,13 +30,13 @@ class MyFloatingActionButton extends StatelessWidget {
           onTap: () {
             context.push(AppRouter.sub);
           },
-          icon: const Icon(Icons.subscriptions, color: Colors.white),
+          icon: Icon(Icons.subscriptions, color: appColor.onPrimary),
           title: "Add Sub",
         ),
         //new exp
         _labelName(
           onTap: () {},
-          icon: const Icon(Icons.monetization_on_rounded, color: Colors.white),
+          icon: Icon(Icons.monetization_on_rounded, color: appColor.onPrimary),
           title: "Add Exp",
         ),
         //audo
@@ -47,7 +47,7 @@ class MyFloatingActionButton extends StatelessWidget {
             fit: BoxFit.cover,
             height: 20,
             width: 10,
-            color: Colors.white,
+            color: appColor.onPrimary,
           ),
           title: "Audio",
         ),
@@ -77,13 +77,13 @@ Widget _chip(String text) => Container(
   decoration: BoxDecoration(
     color: AppColors.gray.withOpacity(0.7),
     borderRadius: BorderRadius.circular(12),
-    border: Border.all(color: Colors.white.withOpacity(0.25)),
+    border: Border.all(color: appColor.onPrimary.withOpacity(0.25)),
     boxShadow: const [
       BoxShadow(blurRadius: 10, offset: Offset(0, 2), color: Color(0x33000000)),
     ],
   ),
   child: Text(
     text,
-    style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
+    style: TextStyle(color: appColor.onPrimary, fontWeight: FontWeight.w600),
   ),
 );

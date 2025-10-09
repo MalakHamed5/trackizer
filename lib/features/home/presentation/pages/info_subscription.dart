@@ -6,6 +6,8 @@ import 'package:trackizer/core/shared/buttons/secondary_btn.dart';
 import 'package:trackizer/core/utils/tools.dart';
 import 'package:trackizer/features/home/data/models/subseription_model.dart';
 
+import '../../../../core/const/app_sizes.dart';
+
 class InfoSubscription extends StatelessWidget {
   const InfoSubscription({super.key, this.scprition});
 
@@ -22,7 +24,7 @@ class InfoSubscription extends StatelessWidget {
               margin: const EdgeInsets.all(20),
               decoration: BoxDecoration(
                 color: appColor.secondaryContainer,
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: AppSizes.brL,
               ),
               child: Column(
                 children: [
@@ -30,7 +32,7 @@ class InfoSubscription extends StatelessWidget {
                   Container(
                     height: appH * 0.4,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: AppSizes.brL,
                       color: appColor.primaryContainer.withOpacity(0.5),
                     ),
                     child: Expanded(
@@ -97,34 +99,34 @@ class InfoSubscription extends StatelessWidget {
                     height: appH * 0.35,
                     decoration: BoxDecoration(
                       color: appColor.primaryContainer.withOpacity(0.2),
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: AppSizes.brL,
                       border: BoxBorder.all(
-                        color: Colors.white.withOpacity(0.3),
+                        color: appColor.onPrimary.withOpacity(0.3),
                       ),
                     ),
                     child: Padding(
                       padding: EdgeInsets.all(20),
                       child: Column(
                         children: [
-                          InfoList(
+                          _InfoList(
                             args: args,
                             infoName: 'Name',
                             onTap: () {},
                             title: args.title,
                           ),
-                          InfoList(
+                          _InfoList(
                             args: args,
                             infoName: 'Descrpition',
                             onTap: () {},
                             title: "Music app",
                           ),
-                          InfoList(
+                          _InfoList(
                             args: args,
                             infoName: 'First payment',
                             onTap: () {},
                             title: "08.01.2022",
                           ),
-                          InfoList(
+                          _InfoList(
                             args: args,
                             infoName: 'Reminder',
                             onTap: () {},
@@ -152,8 +154,8 @@ class InfoSubscription extends StatelessWidget {
   }
 }
 
-class InfoList extends StatelessWidget {
-  const InfoList({
+class _InfoList extends StatelessWidget {
+  const _InfoList({
     super.key,
     required this.args,
     required this.infoName,

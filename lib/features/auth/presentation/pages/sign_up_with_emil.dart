@@ -5,7 +5,8 @@ import 'package:trackizer/features/auth/presentation/widgets/auth_header.dart';
 import 'package:trackizer/features/auth/presentation/widgets/auth_text_field.dart';
 import 'package:trackizer/core/shared/buttons/primary_btn.dart';
 
-import '../../../../core/cofig/routes/app_router.dart';
+import '../../../../core/config/routes/app_router.dart';
+import '../../../../core/utils/tools.dart';
 
 class SignUpWithEmil extends StatefulWidget {
   const SignUpWithEmil({super.key});
@@ -20,7 +21,7 @@ class _SignUpWithEmilState extends State<SignUpWithEmil> {
   final TextEditingController passController = TextEditingController();
   final TextEditingController confirmPassController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
-  
+
   bool _isPasswordVisible = false;
   bool _isConfirmPasswordVisible = false;
   bool _isLoading = false;
@@ -109,24 +110,21 @@ class _SignUpWithEmilState extends State<SignUpWithEmil> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const AuthHeader(),
-                  SizedBox(height: DeviceUtils.getScreenHeight(context) * 0.15),
-                  
+                  SizedBox(height: appH * 0.15),
+
                   // Title
                   Text(
                     'Create Account',
                     style: TextStyle(
                       fontSize: 28,
                       fontWeight: FontWeight.bold,
-                      color: Theme.of(context).colorScheme.onPrimary,
+                      color: appColor.onPrimary,
                     ),
                   ),
                   const SizedBox(height: 8),
                   Text(
                     'Sign up to get started',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Theme.of(context).colorScheme.onSecondary,
-                    ),
+                    style: TextStyle(fontSize: 16, color: appColor.onSecondary),
                   ),
                   const SizedBox(height: 30),
 
@@ -175,36 +173,33 @@ class _SignUpWithEmilState extends State<SignUpWithEmil> {
                   ),
 
                   const SizedBox(height: 30),
-                  
+
                   // Sign up button
                   PrimaryButton(
                     onPressed: _isLoading ? null : _handleSignUp,
-                    txt: _isLoading ? "Creating Account..." : "Get Started, it's free!",
+                    txt: _isLoading
+                        ? "Creating Account..."
+                        : "Get Started, it's free!",
                   ),
-                  
+
                   const SizedBox(height: 20),
-                  
+
                   // Terms text
                   Text(
                     'By signing up, you agree to our Terms of Service and Privacy Policy',
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Theme.of(context).colorScheme.onSecondary,
-                    ),
+                    style: TextStyle(fontSize: 12, color: appColor.onSecondary),
                     textAlign: TextAlign.center,
                   ),
-                  
+
                   const SizedBox(height: 30),
-                  
+
                   // Sign in link
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
                         "Already have an account? ",
-                        style: TextStyle(
-                          color: Theme.of(context).colorScheme.onSecondary,
-                        ),
+                        style: TextStyle(color: appColor.onSecondary),
                       ),
                       GestureDetector(
                         onTap: () {
@@ -213,14 +208,14 @@ class _SignUpWithEmilState extends State<SignUpWithEmil> {
                         child: Text(
                           "Sign In",
                           style: TextStyle(
-                            color: Theme.of(context).colorScheme.secondary,
+                            color: appColor.secondary,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
                     ],
                   ),
-                  
+
                   const SizedBox(height: 20),
                 ],
               ),
@@ -244,10 +239,7 @@ class _SignUpWithEmilState extends State<SignUpWithEmil> {
         Text(
           name,
           textAlign: TextAlign.start,
-          style: TextStyle(
-            color: Theme.of(context).colorScheme.onSecondary,
-            fontSize: 14,
-          ),
+          style: TextStyle(color: appColor.onSecondary, fontSize: 14),
         ),
         TextFormField(
           controller: controller,
@@ -256,20 +248,16 @@ class _SignUpWithEmilState extends State<SignUpWithEmil> {
           decoration: InputDecoration(
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(14)),
             enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                color: Theme.of(context).colorScheme.primaryContainer,
-              ),
+              borderSide: BorderSide(color: appColor.primaryContainer),
               borderRadius: BorderRadius.circular(14),
             ),
             focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                color: Theme.of(context).colorScheme.primaryContainer,
-              ),
+              borderSide: BorderSide(color: appColor.primaryContainer),
             ),
             suffixIcon: IconButton(
               icon: Icon(
                 isVisible ? Icons.visibility_off : Icons.visibility,
-                color: Theme.of(context).colorScheme.onSecondary,
+                color: appColor.onSecondary,
               ),
               onPressed: onToggleVisibility,
             ),

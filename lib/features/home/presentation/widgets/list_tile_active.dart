@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/utils/device_utils.dart';
+import '../../../../core/const/app_sizes.dart';
+import '../../../../core/utils/tools.dart';
 
 class ListTileActive extends StatelessWidget {
   const ListTileActive({
@@ -20,14 +21,14 @@ class ListTileActive extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(
-        horizontal: DeviceUtils.getScreenWidth(context) * 0.04,
-        vertical: DeviceUtils.getScreenWidth(context) * 0.01,
+        horizontal: appW * 0.04,
+        vertical: appW * 0.01,
       ),
       child: ListTile(
         onTap: onTap,
         contentPadding: EdgeInsets.symmetric(
-          horizontal: DeviceUtils.getScreenWidth(context) * 0.04,
-          vertical: DeviceUtils.getScreenWidth(context) * 0.02,
+          horizontal: appW * 0.04,
+          vertical: appW * 0.02,
         ),
         //img
         leading: Image.asset(img),
@@ -36,16 +37,11 @@ class ListTileActive extends StatelessWidget {
         //price
         trailing: Text(
           price,
-          style: TextStyle(
-            color: Theme.of(context).colorScheme.onPrimary,
-            fontSize: DeviceUtils.getScreenWidth(context) * 0.04,
-          ),
+          style: TextStyle(color: appColor.onPrimary, fontSize: appW * 0.04),
         ),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-          side: BorderSide(
-            color: Theme.of(context).colorScheme.secondaryContainer,
-          ),
+          borderRadius: AppSizes.brL,
+          side: BorderSide(color: appColor.secondaryContainer),
         ),
       ),
     );

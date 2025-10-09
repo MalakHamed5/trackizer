@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/utils/tools.dart';
+
 class AuthTextField extends StatelessWidget {
   const AuthTextField({
     super.key,
@@ -24,10 +26,7 @@ class AuthTextField extends StatelessWidget {
         Text(
           name,
           textAlign: TextAlign.start,
-          style: TextStyle(
-            color: Theme.of(context).colorScheme.onSecondary,
-            fontSize: 14,
-          ),
+          style: TextStyle(color: appColor.onSecondary, fontSize: 14),
         ),
         TextFormField(
           controller: controller,
@@ -37,26 +36,18 @@ class AuthTextField extends StatelessWidget {
           decoration: InputDecoration(
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(14)),
             enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                color: Theme.of(context).colorScheme.primaryContainer,
-              ),
+              borderSide: BorderSide(color: appColor.primaryContainer),
               borderRadius: BorderRadius.circular(14),
             ),
             focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                color: Theme.of(context).colorScheme.primaryContainer,
-              ),
+              borderSide: BorderSide(color: appColor.primaryContainer),
             ),
             errorBorder: OutlineInputBorder(
-              borderSide: const BorderSide(
-                color: Colors.red,
-              ),
+              borderSide: const BorderSide(color: Colors.red),
               borderRadius: BorderRadius.circular(14),
             ),
             focusedErrorBorder: OutlineInputBorder(
-              borderSide: const BorderSide(
-                color: Colors.red,
-              ),
+              borderSide: const BorderSide(color: Colors.red),
               borderRadius: BorderRadius.circular(14),
             ),
           ),
