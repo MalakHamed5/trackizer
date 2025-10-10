@@ -10,11 +10,11 @@ import '../../../../core/config/routes/app_router.dart';
 import '../../../../core/const/app_sizes.dart';
 import '../../../../core/const/assets.dart';
 import '../../../../core/utils/device_utils.dart';
-import '../../data/models/budget_model.dart';
-import '../widgets/add_button.dart';
-import '../widgets/budget_card.dart';
-import '../widgets/my_bottom_app_bar.dart';
-import '../widgets/my_floationg_acion_button.dart';
+import '../../../home/data/models/budget_model.dart';
+import '../../../home/presentation/widgets/add_button.dart';
+import '../../../home/presentation/widgets/budget_card.dart';
+import '../../../home/presentation/widgets/my_bottom_app_bar.dart';
+import '../../../home/presentation/widgets/my_floationg_acion_button.dart';
 
 class SpendingBugetPage extends StatefulWidget {
   const SpendingBugetPage({super.key});
@@ -52,12 +52,7 @@ class _SpendingBugetPageState extends State<SpendingBugetPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: const MyFloatingActionButton(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      backgroundColor: AppColors.backgroundDark,
-      bottomNavigationBar: const MyBottmAppBar(
-        currentPage: AppRouter.spendingBuget,
-      ),
+     
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(60),
         child: CustomTextAppBar(

@@ -48,8 +48,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: const MyFloatingActionButton(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(60),
         child: CustomTextAppBar(
@@ -58,8 +57,6 @@ class _HomePageState extends State<HomePage> {
           showLeadingIcon: false,
         ),
       ),
-      bottomNavigationBar: const MyBottmAppBar(currentPage: AppRouter.home),
-      // --- Body ---//
       body: CustomScrollView(
         slivers: [
           // ---- Chart

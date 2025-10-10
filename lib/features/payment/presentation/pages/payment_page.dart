@@ -4,15 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:trackizer/core/config/theme/app_typography.dart';
 import 'package:trackizer/core/shared/appbars/custom_appbar_text.dart';
 import 'package:trackizer/features/home/presentation/widgets/add_button.dart';
-import 'package:trackizer/features/home/presentation/widgets/my_floationg_acion_button.dart';
 
-import '../../../../core/config/routes/app_router.dart';
 import '../../../../core/const/assets.dart';
 import '../../../../core/utils/tools.dart';
-import '../widgets/my_bottom_app_bar.dart';
 
-class CardDemoPage extends StatelessWidget {
-  const CardDemoPage({super.key});
+class PaymentPage extends StatelessWidget {
+  const PaymentPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +18,6 @@ class CardDemoPage extends StatelessWidget {
         preferredSize: Size.fromHeight(60),
         child: CustomTextAppBar(title: 'Card', showLeadingIcon: false),
       ),
-      floatingActionButton: MyFloatingActionButton(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: const MyBottmAppBar(currentPage: AppRouter.card),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -70,16 +64,20 @@ class CardDemoPage extends StatelessWidget {
               ],
             ),
             sizeH(50),
-            Container(height: 200, 
-            decoration: BoxDecoration(
-              color: appColor.secondaryContainer.withOpacity(0.5), 
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(25), 
-                topRight: Radius.circular(25), 
-              )
-            ),child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 40 , vertical: 60),
-              child: AddButton(title: "Add new card")),)
+            Container(
+              height: 200,
+              decoration: BoxDecoration(
+                color: appColor.secondaryContainer.withOpacity(0.5),
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(25),
+                  topRight: Radius.circular(25),
+                ),
+              ),
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 40, vertical: 60),
+                child: AddButton(title: "Add new card"),
+              ),
+            ),
           ],
         ),
       ),

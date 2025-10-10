@@ -10,18 +10,18 @@ import '../../../../core/config/routes/app_router.dart';
 import '../../../../core/const/app_colors.dart';
 import '../../../../core/const/app_sizes.dart';
 import '../../../../core/const/assets.dart';
-import '../../data/models/subseription_model.dart';
-import '../widgets/my_bottom_app_bar.dart';
-import '../widgets/my_floationg_acion_button.dart';
+import '../../../home/data/models/subseription_model.dart';
+import '../../../home/presentation/widgets/my_bottom_app_bar.dart';
+import '../../../home/presentation/widgets/my_floationg_acion_button.dart';
 
-class CalendarPage extends StatefulWidget {
-  const CalendarPage({super.key});
+class BillingSchedulePage extends StatefulWidget {
+  const BillingSchedulePage({super.key});
 
   @override
-  State<CalendarPage> createState() => _CalendarPageState();
+  State<BillingSchedulePage> createState() => _BillingSchedulePageState();
 }
 
-class _CalendarPageState extends State<CalendarPage> {
+class _BillingSchedulePageState extends State<BillingSchedulePage> {
   CalendarAgendaController calendarAgendaControllerNotAppBar =
       CalendarAgendaController();
 
@@ -64,11 +64,6 @@ class _CalendarPageState extends State<CalendarPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: const MyFloatingActionButton(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      // --- Bottom Nav Bar ---//
-      extendBody: true,
-      bottomNavigationBar: const MyBottmAppBar(currentPage: AppRouter.calendar),
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(60),
         child: CustomTextAppBar(

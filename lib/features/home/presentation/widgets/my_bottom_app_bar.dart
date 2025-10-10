@@ -1,15 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-
-import '../../../../core/config/routes/app_router.dart';
 import '../../../../core/const/app_colors.dart';
 import '../../../../core/utils/tools.dart';
 
-class MyBottmAppBar extends StatelessWidget {
-  const MyBottmAppBar({super.key, required this.currentPage});
+class MyBottmAppBar extends StatefulWidget {
+  const MyBottmAppBar({
+    super.key,
+    required this.currentIndex,
+    required this.onTap,
+    this.icons = const [
+      Icons.home,
+      Icons.dashboard,
+      Icons.calendar_view_day_outlined,
+      Icons.credit_card,
+    ],
+  });
 
-  final String currentPage;
+  final int currentIndex;
+  final Function(int index) onTap;
+  final List<IconData> icons;
+
+  @override
+  State<MyBottmAppBar> createState() => _MyBottmAppBarState();
+}
+
+class _MyBottmAppBarState extends State<MyBottmAppBar> {
   final double hpad = 16;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,66 +37,34 @@ class MyBottmAppBar extends StatelessWidget {
           notchMargin: 8,
           color: appColor.secondaryContainer,
           shape: InsetCircularNotchedRectangle(inset: hpad),
-          child: Row(
-            children: [
-              Expanded(
-                child: BottomAppIcon(
-                  currentPage: currentPage,
-                  navPage: AppRouter.home,
-                  icon: Icons.home,
+          child: ListView.builder(
+            shrinkWrap: true,
+            scrollDirection: Axis.horizontal,
+            itemCount: widget.icons.length + 1,
+            itemBuilder: (context, index) {
+              if (index == 2) {
+                return const SizedBox(width: 80);
+              }
+              final actualIndex = index > 2 ? index - 1 : index;
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: InkWell(
+                  onTap: () {
+                    final actualIndex = index > 2 ? index - 1 : index;
+                    widget.onTap(actualIndex);
+                    setState(() {});
+                  },
+                  child: Icon(
+                    widget.icons[actualIndex],
+                    color: widget.currentIndex == actualIndex
+                        ? appColor.onPrimary
+                        : AppColors.gray50,
+                  ),
                 ),
-              ),
-              Expanded(
-                child: BottomAppIcon(
-                  currentPage: currentPage,
-                  navPage: AppRouter.spendingBuget,
-                  icon: Icons.dashboard,
-                ),
-              ),
-              const Spacer(),
-              Expanded(
-                child: BottomAppIcon(
-                  currentPage: currentPage,
-                  navPage: AppRouter.calendar,
-                  icon: Icons.calendar_view_day_outlined,
-                ),
-              ),
-              Expanded(
-                child: BottomAppIcon(
-                  currentPage: currentPage,
-                  navPage: AppRouter.card,
-                  icon: Icons.credit_card,
-                ),
-              ),
-            ],
+              );
+            },
           ),
         ),
-      ),
-    );
-  }
-}
-
-class BottomAppIcon extends StatelessWidget {
-  const BottomAppIcon({
-    super.key,
-    required this.currentPage,
-    required this.navPage,
-    required this.icon,
-  });
-
-  final String currentPage;
-  final String navPage;
-  final IconData icon;
-
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: () {
-        if (currentPage != navPage) context.push(navPage);
-      },
-      icon: Icon(
-        icon,
-        color: currentPage == navPage ? appColor.onPrimary : AppColors.gray50,
       ),
     );
   }

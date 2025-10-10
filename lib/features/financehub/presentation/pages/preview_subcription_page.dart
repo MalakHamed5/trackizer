@@ -156,7 +156,6 @@ class InfoSubscription extends StatelessWidget {
 
 class _InfoList extends StatelessWidget {
   const _InfoList({
-    super.key,
     required this.args,
     required this.infoName,
     required this.onTap,

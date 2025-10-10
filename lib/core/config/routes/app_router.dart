@@ -1,16 +1,17 @@
 import 'package:go_router/go_router.dart';
 import 'package:trackizer/features/home/data/models/user_model.dart';
-import 'package:trackizer/features/home/presentation/pages/card_page.dart';
-import 'package:trackizer/features/home/presentation/pages/info_subscription.dart';
-import 'package:trackizer/features/home/presentation/pages/new_subscription.dart';
-import 'package:trackizer/features/home/presentation/pages/setting_page.dart';
-import 'package:trackizer/features/home/presentation/pages/spending_budget_page.dart';
+import 'package:trackizer/features/home/presentation/pages/home_layout_page.dart';
+import 'package:trackizer/features/payment/presentation/pages/payment_page.dart';
+import 'package:trackizer/features/financehub/presentation/pages/preview_subcription_page.dart';
+import 'package:trackizer/features/financehub/presentation/pages/add_subcription_page.dart';
+import 'package:trackizer/features/profile/presentation/pages/setting_page.dart';
+import 'package:trackizer/features/financehub/presentation/pages/spending_budget_page.dart';
 
 import '../../../features/auth/presentation/pages/sign_in_page.dart';
 import '../../../features/auth/presentation/pages/sign_up_with_emil.dart';
 import '../../../features/auth/presentation/pages/welcome_page.dart';
 import '../../../features/auth/presentation/pages/sign_up_with.dart';
-import '../../../features/home/presentation/pages/calendar_page.dart';
+import '../../../features/financehub/presentation/pages/billing_schedule_page.dart';
 import '../../../features/home/presentation/pages/home_page.dart';
 
 class AppRouter {
@@ -29,7 +30,6 @@ class AppRouter {
   static final GoRouter router = GoRouter(
     initialLocation: welcome,
     routes: [
-
       // --- Auth --- //
       GoRoute(path: welcome, builder: (context, state) => const WelcomePage()),
       GoRoute(path: signup, builder: (context, state) => const SignUpWith()),
@@ -41,18 +41,16 @@ class AppRouter {
       GoRoute(path: sub, builder: (context, state) => const NewSubscription()),
 
       // --- NavBar ---//
-      GoRoute(path: home, builder: (context, state) => const HomePage()),
+      GoRoute(path: home, builder: (context, state) => const HomeLayoutPage()),
       GoRoute(
         path: calendar,
-        builder: (context, state) => const CalendarPage(),
+        builder: (context, state) => const BillingSchedulePage(),
       ),
       GoRoute(
         path: spendingBuget,
         builder: (context, state) => const SpendingBugetPage(),
-      ),  GoRoute(
-        path: card,
-        builder: (context, state) => const CardDemoPage(),
       ),
+      GoRoute(path: card, builder: (context, state) => const PaymentPage()),
       // --- Rest of page ---//
       GoRoute(
         path: infoSub,
